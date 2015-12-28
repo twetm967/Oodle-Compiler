@@ -1,0 +1,45 @@
+Package com.bju.cps450;
+
+Helpers
+
+  tab                 = 9;
+  line_feed           = 10;
+  carriage_return     = 13;
+  
+  letter              = [['a'..'z'] + ['A'..'Z']];
+  octal               = ['0'..'7'];
+  digit               = ['0'..'9'];
+  
+Tokens
+
+  string               = 'string'; 
+  then                 = 'then'; 
+  true                 = 'true'; 
+  while                = 'while';
+  and                  = 'and';
+  or                   = 'or';
+  
+  boolean = 'boolean';
+  begin = 'begin';
+  class = 'class';
+  else = 'else';
+  end = 'end';
+  false = 'false';
+  from = 'from';
+  if = 'if';
+  inherits = 'inherits';
+  int = 'int';
+  is = 'is';
+  loop = 'loop';
+  me = 'me';
+  new = 'new';
+  not = 'not';
+  null = 'null';
+  string = 'string';
+  then = 'then';
+  true = 'true';
+  while = 'while';
+  
+  
+  colon                = ':';
+  dot                  = '.';
