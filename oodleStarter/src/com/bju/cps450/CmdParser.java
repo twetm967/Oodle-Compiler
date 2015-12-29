@@ -7,6 +7,7 @@ public class CmdParser {
 	public static boolean help = false;
 	public static String[] possibleFiles;
 	public static List<String> files = new ArrayList<String>();
+	public static List<String> oodleFiles = new ArrayList<String>();
 	
 	public static void ParseCmd(String[] CmdArgs)
 	{
@@ -23,6 +24,13 @@ public class CmdParser {
 					break;
 				default:
 					files.add(arg);
+			}
+		}
+		for (String file : files)
+		{
+			if (file.endsWith(".ood"))
+			{
+				oodleFiles.add(file);
 			}
 		}
 	}

@@ -2,44 +2,85 @@ Package com.bju.cps450;
 
 Helpers
 
-  tab                 = 9;
-  line_feed           = 10;
-  carriage_return     = 13;
+  tab = 9;
+  line_feed = 10;
+  carriage_return = 13;
+  eol_chars = [10 + 13];
+  end_of_line = eol_chars | 13 10 ; 
   
-  letter              = [['a'..'z'] + ['A'..'Z']];
-  octal               = ['0'..'7'];
-  digit               = ['0'..'9'];
+  sign = '+' | '-';
   
-Tokens
+  letter = [['a'..'z'] + ['A'..'Z']];
+  octal = ['0'..'7'];
+  digit = ['0'..'9'];
+  number = digit+;
+  ascii_chars = [0..0xff] ;
+  all_chars = [0..0xffff] ;
+  
+States
+  normal, in_comment, in_string ;
 
-  string               = 'string'; 
-  then                 = 'then'; 
-  true                 = 'true'; 
-  while                = 'while';
-  and                  = 'and';
-  or                   = 'or';
+Tokens
+  ignored_newline = '_' end_of_line ;
+  {normal} newline = end_of_line ;
+  blank = ' ' | tab ;
+ 
+//*****keywords**********
+  boolean = 'boolean' ;
+  begin = 'begin' ;
+  class = 'class' ;
+  else = 'else' ;
+  end = 'end' ;
+  false = 'false' ;
+  from = 'from' ;
+  if = 'if' ;
+  inherits = 'inherits' ;
+  int = 'int' ;
+  is = 'is' ;
+  loop = 'loop' ;
+  me = 'me' ;
+  new = 'new' ;
+  null = 'null' ;
+  string = 'string' ;
+  then = 'then' ;
+  true = 'true' ;
+  while = 'while' ;
+
+  //******operator keywords****************
+  and = 'and' ;
+  or = 'or' ;
+  not = 'not' ;
+
+  int_literal = sign? number ;
+
+// *****strings******* 
+  {normal -> in_string} str_start = '"' ;
+  {in_string -> normal} str_iteral = (('\' octal octal octal) | ('\'  ('t' | 'n' | 'f' | 'r' | '"' | '\')) | [[[ascii_chars - eol_chars ]- '\' ] - '"'])* '"' ;
+  {in_string -> normal} unterminated_str = (('\' octal octal octal) | ('\'  ('t' | 'n' | 'f' | 'r' | '"' | '\')) | [[[ascii_chars - eol_chars ]- '\' ] - '"'])* end_of_line ;
+  {in_string -> normal} illegal_str = (('\' octal octal octal) | ('\'  ('t' | 'n' | 'f' | 'r' | '"' | '\')) | [[ascii_chars - eol_chars ] - '"'])* '"' ;
+
+  // ********operators*************
+  strconcat = '&' ;
+  addition = '+' ;
+  subtraction = '-' ;
+  multiplication = '*';
+  division = '/' ;
+  comparison = ['>' + '<']? '=' ;
+  assignment = ':=' ;
+  lparen = '(' ;
+  rparen = ')' ;
+  lbrace = '[' ;
+  rbrace = ']' ;
+  comma = ',' ;
+  semicolon = ';' ;
+  colon = ':' ;
+  dot = '.' ;
+
+  identifier = (letter | '_') (letter | digit | '_')* ;
+  invalid_identifier = sign? digit (letter | digit | '_')* ;
+
+
+// **********comments***************
+  comment = '~' [all_chars - eol_chars]* ;
+  unknown = all_chars ;
   
-  boolean = 'boolean';
-  begin = 'begin';
-  class = 'class';
-  else = 'else';
-  end = 'end';
-  false = 'false';
-  from = 'from';
-  if = 'if';
-  inherits = 'inherits';
-  int = 'int';
-  is = 'is';
-  loop = 'loop';
-  me = 'me';
-  new = 'new';
-  not = 'not';
-  null = 'null';
-  string = 'string';
-  then = 'then';
-  true = 'true';
-  while = 'while';
-  
-  
-  colon                = ':';
-  dot                  = '.';

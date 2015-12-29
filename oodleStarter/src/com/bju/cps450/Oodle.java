@@ -6,9 +6,9 @@
  */
 
 package com.bju.cps450;
-import jargs.gnu.CmdLineParser;
-import jargs.gnu.CmdLineParser.IllegalOptionValueException;
-import jargs.gnu.CmdLineParser.UnknownOptionException;
+import com.bju.cps450.CmdParser.*;
+import com.bju.cps450.FileManager.*;
+import com.bju.cps450.node.*;
 
 import java.io.IOException;
 
@@ -24,7 +24,7 @@ public class Oodle
 	public static void printHelp() {
 		System.out.println("Oodle Compiler");
 		System.out.println("v 0.1");
-		System.out.println("Author: <name>");
+		System.out.println("Author: Thomas Wetmore");
 		System.out.println("");
 		System.out.println("Usage:");
 		System.out.println(" java -jar oodle.jar [options] [files]");
@@ -35,7 +35,9 @@ public class Oodle
 	 *  @args - the list of command line arguments
 	 * Purpose: main execution function for compiler
 	 */
-    public static void main(String[] args) throws IOException, IllegalOptionValueException, UnknownOptionException, LexerException {
+    public static void main(String[] args) throws IOException, LexerException {
+    	String mergedFile;
+    	Token token;
     	System.out.println("Oodle compiler successfully started.");
     	if(args.length < 1)
     	{
@@ -45,17 +47,34 @@ public class Oodle
     	else 
     	{
     		System.out.println("Correct input.");
-	    	CmdLineParser parser = new CmdLineParser();
+	    	
 	    	//command line options
-			CmdLineParser.Option help = parser.addBooleanOption('?', "help");
 			//parse command line arguments
-			parser.parse(args);
+			CmdParser.ParseCmd(args);
 			
 			//set applicable values from options class
-			if ((Boolean)parser.getOptionValue(help, false)) {
+			if ((Boolean)CmdParser.help) {
 				printHelp();
 				return;
 			}
+			
+			//combine all ood files
+			System.out.println("Starting FileManager");			
+			FileManager manager = new FileManager(CmdParser.oodleFiles, "tempOodleFile.ood");
+			manager.mergeFiles();
+			System.out.println("Merge Complete");
+			
+			//after files are combined run them through the custom lexer
+			System.out.println("Starting Oodle Lexer");
+			System.out.println("");
+			OodleLexer lexer = new OodleLexer(manager, manager.getTempFileName(), CmdParser.print);
+			token = null;
+			while (!(token instanceof EOF))
+			{
+				token = lexer.next();
+			}
+			
+			
     	}
     }
 }
