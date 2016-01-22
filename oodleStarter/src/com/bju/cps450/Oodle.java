@@ -32,11 +32,9 @@ public class Oodle
 	
 	/* main
 	 * Arguments:
-	 *  @args - the list of command line arguments
 	 * Purpose: main execution function for compiler
 	 */
     public static void main(String[] args) throws IOException, LexerException {
-    	String mergedFile;
     	Token token;
     	System.out.println("Oodle compiler successfully started.");
     	if(args.length < 1)
@@ -58,7 +56,7 @@ public class Oodle
 				return;
 			}
 			
-			//combine all ood files
+			/*combine all ood files*/
 			System.out.println("Starting FileManager");			
 			FileManager manager = new FileManager(CmdParser.oodleFiles, "tempOodleFile.ood");
 			manager.mergeFiles();

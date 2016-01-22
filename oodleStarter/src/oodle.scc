@@ -16,6 +16,7 @@ Helpers
   number = digit+;
   ascii_chars = [0..0xff] ;
   all_chars = [0..0xffff] ;
+  str_start = '"' ;
   
 States
   normal, in_comment, in_string ;
@@ -53,7 +54,7 @@ Tokens
 
   int_literal = sign? number ;
 
-// *****strings******* 
+// *****strings*******
   {normal -> in_string} str_start = '"' ;
   {in_string -> normal} str_iteral = (('\' octal octal octal) | ('\'  ('t' | 'n' | 'f' | 'r' | '"' | '\')) | [[[ascii_chars - eol_chars ]- '\' ] - '"'])* '"' ;
   {in_string -> normal} unterminated_str = (('\' octal octal octal) | ('\'  ('t' | 'n' | 'f' | 'r' | '"' | '\')) | [[[ascii_chars - eol_chars ]- '\' ] - '"'])* end_of_line ;

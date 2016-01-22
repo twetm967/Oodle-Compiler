@@ -17,6 +17,7 @@ public class FileManager {
 	public static File tempFile;
 	private List<OriginalOodFile> originalFileMaps = new ArrayList<OriginalOodFile>();
 	private int _lineCounter;
+	private OriginalOodFile lastUsed;
 	
 	//getters/setters
 	public String getTempFileName() { return _tempFileName;}
@@ -73,15 +74,22 @@ public class FileManager {
 	{
 		String tokenInfo = "";
 		int i = 0;
-		for(; i < originalFileMaps.size(); ++i)
+		if(lastUsed != null)
 		{
-			OriginalOodFile file = originalFileMaps.get(i);
-			if(line >= file.getStart() && line <= file.getEnd())
-			{
-				tokenInfo += file.getFileName() + ":" + (line-file.getOffset()) + ",";
+			if (line >= lastUsed.getStart() && line <= lastUsed.getEnd()) {
+				tokenInfo += lastUsed.getFileName() + ":" + (line - lastUsed.getOffset()) + ",";
 			}
 		}
-		
+		else {
+
+			for (; i < originalFileMaps.size(); ++i) {
+				OriginalOodFile file = originalFileMaps.get(i);
+				if (line >= file.getStart() && line <= file.getEnd()) {
+					tokenInfo += file.getFileName() + ":" + (line - file.getOffset()) + ",";
+					lastUsed = file;
+				}
+			}
+		}
 		
 		return tokenInfo;
 	}
