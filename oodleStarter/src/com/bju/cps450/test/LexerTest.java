@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PushbackReader;
 
+//tests
 public class LexerTest extends TestCase {
 	Lexer lex;
 
