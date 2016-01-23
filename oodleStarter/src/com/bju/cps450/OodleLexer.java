@@ -30,7 +30,7 @@ public class OodleLexer extends Lexer {
 
 	public boolean isKeyword(Token _token)
 	{
-		if(this.token instanceof TBoolean || _token instanceof TBegin || _token instanceof TClass || _token instanceof TElse ||
+		if(this.token instanceof TBoolean || _token instanceof TBegin || _token instanceof TClassKey || _token instanceof TElse ||
 				_token instanceof TEnd || _token instanceof TFalse || _token instanceof TFrom || _token instanceof TIf ||
 				_token instanceof TInherits || _token instanceof TInt || _token instanceof TIs || _token instanceof TLoop ||
 				_token instanceof TMe || _token instanceof TNew || _token instanceof TNull || _token instanceof TString ||

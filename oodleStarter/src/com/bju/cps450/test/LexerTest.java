@@ -21,7 +21,7 @@ public class LexerTest extends TestCase {
 		assertNextToken(lexer, TAnd.class);
 		assertNextToken(lexer, TBoolean.class);
 		assertNextToken(lexer, TBegin.class);
-		assertNextToken(lexer, TClass.class);
+		assertNextToken(lexer, TClassKey.class);
 		assertNextToken(lexer, TElse.class);
 		assertNextToken(lexer, TEnd.class);
 		assertNextToken(lexer, TFalse.class);

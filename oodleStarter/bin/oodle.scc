@@ -29,7 +29,7 @@ Tokens
 //*****keywords**********
   boolean = 'boolean' ;
   begin = 'begin' ;
-  class = 'class' ;
+  class_key = 'class' ;
   else = 'else' ;
   end = 'end' ;
   false = 'false' ;
@@ -84,4 +84,6 @@ Tokens
 // **********comments***************
   comment = '~' [all_chars - eol_chars]* ;
   unknown = all_chars ;
+
+
   

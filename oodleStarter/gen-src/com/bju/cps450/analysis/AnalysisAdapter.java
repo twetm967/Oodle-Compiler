@@ -69,6 +69,396 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseStart(Start node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStart(AStart node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAClass(AClass node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarDecl(AVarDecl node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMethodDecl(AMethodDecl node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAArgumentDeclList(AArgumentDeclList node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAArgumentDecl(AArgumentDecl node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIntType(AIntType node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStringType(AStringType node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABooleanType(ABooleanType node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIdType(AIdType node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAArrayType(AArrayType node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStatementList(AStatementList node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAsgnStatement(AAsgnStatement node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfStatement(AIfStatement node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseALoopStatement(ALoopStatement node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACallStatement(ACallStatement node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAssignmentStmt(AAssignmentStmt node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfStmt(AIfStmt node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseALoopStmt(ALoopStmt node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACallStmt(ACallStmt node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressionList(AExpressionList node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpression(AExpression node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOrExpressionLvl6(AOrExpressionLvl6 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPassExpressionLvl6(APassExpressionLvl6 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAndExpressionLvl5(AAndExpressionLvl5 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPassExpressionLvl5(APassExpressionLvl5 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAQtExpressionLvl4(AQtExpressionLvl4 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPassExpressionLvl4(APassExpressionLvl4 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAConcatExpressionLvlc(AConcatExpressionLvlc node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPassExpressionLvlc(APassExpressionLvlc node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAddExpressionLvl3(AAddExpressionLvl3 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASubExpressionLvl3(ASubExpressionLvl3 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPassExpressionLvl3(APassExpressionLvl3 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMulExpressionLvl2(AMulExpressionLvl2 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADivExpressionLvl2(ADivExpressionLvl2 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPassExpressionLvl2(APassExpressionLvl2 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANotExpressionLvl1(ANotExpressionLvl1 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANegExpressionLvl1(ANegExpressionLvl1 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPassExpressionLvl1(APassExpressionLvl1 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIdentifierExpressionLvl0(AIdentifierExpressionLvl0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressionLvl0(AExpressionLvl0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStringExpressionLvl0(AStringExpressionLvl0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIntExpressionLvl0(AIntExpressionLvl0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATrueExpressionLvl0(ATrueExpressionLvl0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFalseExpressionLvl0(AFalseExpressionLvl0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANewObjExpressionLvl0(ANewObjExpressionLvl0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExprExpressionLvl0(AExprExpressionLvl0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParenexprExpressionLvl0(AParenexprExpressionLvl0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExprarrayExpressionLvl0(AExprarrayExpressionLvl0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMethodCallExpr(AMethodCallExpr node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMethodHeader(AMethodHeader node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMethodMiddle(AMethodMiddle node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMethodEnd(AMethodEnd node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressionListHelper(AExpressionListHelper node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressionHelper(AExpressionHelper node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACallHelper(ACallHelper node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfElse(AIfElse node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAssignmentHelper(AAssignmentHelper node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStatementListHelper(AStatementListHelper node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarType(AVarType node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarExp(AVarExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAArgListHelper(AArgListHelper node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAInheritsFrom(AInheritsFrom node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAInnerClass(AInnerClass node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTIgnoredNewline(TIgnoredNewline node)
     {
         defaultCase(node);
@@ -99,7 +489,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTClass(TClass node)
+    public void caseTClassKey(TClassKey node)
     {
         defaultCase(node);
     }

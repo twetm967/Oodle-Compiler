@@ -29,7 +29,7 @@ Tokens
 //*****keywords**********
   boolean = 'boolean' ;
   begin = 'begin' ;
-  class = 'class' ;
+  class_key = 'class' ;
   else = 'else' ;
   end = 'end' ;
   false = 'false' ;
@@ -84,4 +84,110 @@ Tokens
 // **********comments***************
   comment = '~' [all_chars - eol_chars]* ;
   unknown = all_chars ;
+
+Productions
+  start = [left]:T.newline* [init]:class inner_class* [right]:T.newline*;
+
+  class = T.class_key [left]:T.identifier inherits_from? T.is T.newline+ var_decl* method_decl* T.end [right]:T.identifier;
+
+  var_decl = T.identifier var_type? var_exp? T.newline+;
+
+  method_decl = method_header method_middle method_end;
+
+  argument_decl_list = arg_list_helper* argument_decl;
+
+  argument_decl = T.identifier T.colon type;
+
+  type = {int}       T.int
+       | {string}    T.str_iteral
+       | {boolean}   T.boolean
+       | {id}        T.identifier
+       | {array}     T.lbrace expression? T.rbrace;
+
+  statement_list = statement_list_helper*;
+
+  statement = {asgn} assignment_stmt
+        |{if}   if_stmt
+        |{loop}   loop_stmt
+        |{call}   call_stmt;
+
+  assignment_stmt = T.identifier assignment_helper* T.assignment expression;
+
+  if_stmt = [left]:T.if expression T.then T.newline+ statement_list if_else? T.end [right]:T.if;
+
+  loop_stmt = [left]:T.loop T.while expression T.newline+ statement_list T.end [right]:T.loop;
+
+  call_stmt = call_helper? T.identifier T.lparen expression_list? T.rparen;
+
+  expression_list = expression_list_helper* expression;
+
+  expression = expression_lvl6;
+
+  expression_lvl6 = {or}   expression_lvl6 T.or expression_lvl5
+                    | {pass} expression_lvl5;
+
+  expression_lvl5 = {and}  expression_lvl5 T.and expression_lvl4
+                    | {pass} expression_lvl4;
+
+  expression_lvl4 = {qt}   [left]:expression_lvlc T.comparison [right]:expression_lvlc
+                    | {pass} expression_lvlc;
+
+  expression_lvlc =  {concat}  expression_lvlc T.strconcat expression_lvl3
+                    |   {pass} expression_lvl3;
+
+  expression_lvl3 = {add}  expression_lvl3 T.addition expression_lvl2
+                  | {sub}  expression_lvl3 T.subtraction expression_lvl2
+                  | {pass} expression_lvl2;
+
+  expression_lvl2 = {mul}  expression_lvl2 T.multiplication expression_lvl1
+                  | {div}  expression_lvl2 T.division expression_lvl1
+                  | {pass} expression_lvl1;
+
+  expression_lvl1 = {not}  T.not expression_lvl1
+                  | {neg}  T.subtraction expression_lvl1
+                  | {pass} expression_lvl0;
+
+  expression_lvl0 = {identifier}  T.identifier
+                  | | {string}    T.str_iteral
+                  | {int}         T.int_literal
+                  | {true}        T.true
+                  | {false}       T.false
+                  | {new_obj}     T.new type
+                  | {expr}        T.lparen expression T.rparen
+                  | {parenexpr}   call_helper? T.identifier T.lparen expression_list? T.rparen
+                  | {exprarray}   T.identifier [left]:expression_helper [right]:expression_helper*;
+
+
+   method_call_expr = expression_lvl0 T.dot;
+
+  //helpers
+  method_header = T.identifier T.lparen argument_decl_list T.rparen var_type? T.is T.newline+ var_decl* ;
+
+  method_middle = T.begin T.newline statement_list;
+
+  method_end = T.end T.identifier T.newline;
+
+
+  expression_list_helper = expression T.comma;
+
+  expression_helper = T.lbrace expression T.rbrace;
+
+  call_helper = expression T.dot;
+
+  if_else = T.else T.newline+ statement_list;
+
+  assignment_helper = T.lbrace expression T.rbrace;
+
+  statement_list_helper = statement T.newline+;
+
+  var_type = T.colon type;
+
+  var_exp = T.assignment expression;
+
+  arg_list_helper = argument_decl T.semicolon;
+
+  inherits_from = T.inherits T.from T.identifier;
+
+  inner_class = T.newline* T.class_key;
+
   
