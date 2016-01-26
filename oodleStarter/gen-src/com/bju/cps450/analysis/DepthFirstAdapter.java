@@ -297,9 +297,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAStringType(AStringType node)
     {
         inAStringType(node);
-        if(node.getStrIteral() != null)
+        if(node.getString() != null)
         {
-            node.getStrIteral().apply(this);
+            node.getString().apply(this);
         }
         outAStringType(node);
     }
@@ -502,8 +502,8 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getIdentifier().apply(this);
         }
         {
-            List<PAssignmentHelper> copy = new ArrayList<PAssignmentHelper>(node.getAssignmentHelper());
-            for(PAssignmentHelper e : copy)
+            List<PExpressionHelper> copy = new ArrayList<PExpressionHelper>(node.getExpressionHelper());
+            for(PExpressionHelper e : copy)
             {
                 e.apply(this);
             }
@@ -805,33 +805,91 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAPassExpressionLvl5(node);
     }
 
-    public void inAQtExpressionLvl4(AQtExpressionLvl4 node)
+    public void inAEqExpressionLvl4(AEqExpressionLvl4 node)
     {
         defaultIn(node);
     }
 
-    public void outAQtExpressionLvl4(AQtExpressionLvl4 node)
+    public void outAEqExpressionLvl4(AEqExpressionLvl4 node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAQtExpressionLvl4(AQtExpressionLvl4 node)
+    public void caseAEqExpressionLvl4(AEqExpressionLvl4 node)
     {
-        inAQtExpressionLvl4(node);
+        inAEqExpressionLvl4(node);
         if(node.getLeft() != null)
         {
             node.getLeft().apply(this);
         }
-        if(node.getComparison() != null)
+        if(node.getEqual() != null)
         {
-            node.getComparison().apply(this);
+            node.getEqual().apply(this);
         }
         if(node.getRight() != null)
         {
             node.getRight().apply(this);
         }
-        outAQtExpressionLvl4(node);
+        outAEqExpressionLvl4(node);
+    }
+
+    public void inAGtExpressionLvl4(AGtExpressionLvl4 node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAGtExpressionLvl4(AGtExpressionLvl4 node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAGtExpressionLvl4(AGtExpressionLvl4 node)
+    {
+        inAGtExpressionLvl4(node);
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        if(node.getGreaterEq() != null)
+        {
+            node.getGreaterEq().apply(this);
+        }
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outAGtExpressionLvl4(node);
+    }
+
+    public void inAGteExpressionLvl4(AGteExpressionLvl4 node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAGteExpressionLvl4(AGteExpressionLvl4 node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAGteExpressionLvl4(AGteExpressionLvl4 node)
+    {
+        inAGteExpressionLvl4(node);
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        if(node.getGreaterThan() != null)
+        {
+            node.getGreaterThan().apply(this);
+        }
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outAGteExpressionLvl4(node);
     }
 
     public void inAPassExpressionLvl4(APassExpressionLvl4 node)
@@ -1088,6 +1146,31 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outANotExpressionLvl1(node);
     }
 
+    public void inAAddExpressionLvl1(AAddExpressionLvl1 node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAAddExpressionLvl1(AAddExpressionLvl1 node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAAddExpressionLvl1(AAddExpressionLvl1 node)
+    {
+        inAAddExpressionLvl1(node);
+        if(node.getAddition() != null)
+        {
+            node.getAddition().apply(this);
+        }
+        if(node.getExpressionLvl1() != null)
+        {
+            node.getExpressionLvl1().apply(this);
+        }
+        outAAddExpressionLvl1(node);
+    }
+
     public void inANegExpressionLvl1(ANegExpressionLvl1 node)
     {
         defaultIn(node);
@@ -1155,23 +1238,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAIdentifierExpressionLvl0(node);
     }
 
-    public void inAExpressionLvl0(AExpressionLvl0 node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAExpressionLvl0(AExpressionLvl0 node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAExpressionLvl0(AExpressionLvl0 node)
-    {
-        inAExpressionLvl0(node);
-        outAExpressionLvl0(node);
-    }
-
     public void inAStringExpressionLvl0(AStringExpressionLvl0 node)
     {
         defaultIn(node);
@@ -1186,6 +1252,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAStringExpressionLvl0(AStringExpressionLvl0 node)
     {
         inAStringExpressionLvl0(node);
+        if(node.getStrStart() != null)
+        {
+            node.getStrStart().apply(this);
+        }
         if(node.getStrIteral() != null)
         {
             node.getStrIteral().apply(this);
@@ -1281,6 +1351,27 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outANewObjExpressionLvl0(node);
     }
 
+    public void inAMeExpressionLvl0(AMeExpressionLvl0 node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMeExpressionLvl0(AMeExpressionLvl0 node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMeExpressionLvl0(AMeExpressionLvl0 node)
+    {
+        inAMeExpressionLvl0(node);
+        if(node.getMe() != null)
+        {
+            node.getMe().apply(this);
+        }
+        outAMeExpressionLvl0(node);
+    }
+
     public void inAExprExpressionLvl0(AExprExpressionLvl0 node)
     {
         defaultIn(node);
@@ -1310,20 +1401,20 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAExprExpressionLvl0(node);
     }
 
-    public void inAParenexprExpressionLvl0(AParenexprExpressionLvl0 node)
+    public void inAMcallExpressionLvl0(AMcallExpressionLvl0 node)
     {
         defaultIn(node);
     }
 
-    public void outAParenexprExpressionLvl0(AParenexprExpressionLvl0 node)
+    public void outAMcallExpressionLvl0(AMcallExpressionLvl0 node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAParenexprExpressionLvl0(AParenexprExpressionLvl0 node)
+    public void caseAMcallExpressionLvl0(AMcallExpressionLvl0 node)
     {
-        inAParenexprExpressionLvl0(node);
+        inAMcallExpressionLvl0(node);
         if(node.getCallHelper() != null)
         {
             node.getCallHelper().apply(this);
@@ -1344,64 +1435,35 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getRparen().apply(this);
         }
-        outAParenexprExpressionLvl0(node);
+        outAMcallExpressionLvl0(node);
     }
 
-    public void inAExprarrayExpressionLvl0(AExprarrayExpressionLvl0 node)
+    public void inAArrayExpressionLvl0(AArrayExpressionLvl0 node)
     {
         defaultIn(node);
     }
 
-    public void outAExprarrayExpressionLvl0(AExprarrayExpressionLvl0 node)
+    public void outAArrayExpressionLvl0(AArrayExpressionLvl0 node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAExprarrayExpressionLvl0(AExprarrayExpressionLvl0 node)
+    public void caseAArrayExpressionLvl0(AArrayExpressionLvl0 node)
     {
-        inAExprarrayExpressionLvl0(node);
+        inAArrayExpressionLvl0(node);
         if(node.getIdentifier() != null)
         {
             node.getIdentifier().apply(this);
         }
-        if(node.getLeft() != null)
         {
-            node.getLeft().apply(this);
-        }
-        {
-            List<PExpressionHelper> copy = new ArrayList<PExpressionHelper>(node.getRight());
+            List<PExpressionHelper> copy = new ArrayList<PExpressionHelper>(node.getExpressionHelper());
             for(PExpressionHelper e : copy)
             {
                 e.apply(this);
             }
         }
-        outAExprarrayExpressionLvl0(node);
-    }
-
-    public void inAMethodCallExpr(AMethodCallExpr node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAMethodCallExpr(AMethodCallExpr node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAMethodCallExpr(AMethodCallExpr node)
-    {
-        inAMethodCallExpr(node);
-        if(node.getExpressionLvl0() != null)
-        {
-            node.getExpressionLvl0().apply(this);
-        }
-        if(node.getDot() != null)
-        {
-            node.getDot().apply(this);
-        }
-        outAMethodCallExpr(node);
+        outAArrayExpressionLvl0(node);
     }
 
     public void inAMethodHeader(AMethodHeader node)
@@ -1477,9 +1539,12 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getBegin().apply(this);
         }
-        if(node.getNewline() != null)
         {
-            node.getNewline().apply(this);
+            List<TNewline> copy = new ArrayList<TNewline>(node.getNewline());
+            for(TNewline e : copy)
+            {
+                e.apply(this);
+            }
         }
         if(node.getStatementList() != null)
         {
@@ -1510,9 +1575,12 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getIdentifier().apply(this);
         }
-        if(node.getNewline() != null)
         {
-            node.getNewline().apply(this);
+            List<TNewline> copy = new ArrayList<TNewline>(node.getNewline());
+            for(TNewline e : copy)
+            {
+                e.apply(this);
+            }
         }
         outAMethodEnd(node);
     }
@@ -1585,9 +1653,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseACallHelper(ACallHelper node)
     {
         inACallHelper(node);
-        if(node.getExpression() != null)
+        if(node.getExpressionLvl0() != null)
         {
-            node.getExpression().apply(this);
+            node.getExpressionLvl0().apply(this);
         }
         if(node.getDot() != null)
         {
@@ -1626,35 +1694,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getStatementList().apply(this);
         }
         outAIfElse(node);
-    }
-
-    public void inAAssignmentHelper(AAssignmentHelper node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAAssignmentHelper(AAssignmentHelper node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAAssignmentHelper(AAssignmentHelper node)
-    {
-        inAAssignmentHelper(node);
-        if(node.getLbrace() != null)
-        {
-            node.getLbrace().apply(this);
-        }
-        if(node.getExpression() != null)
-        {
-            node.getExpression().apply(this);
-        }
-        if(node.getRbrace() != null)
-        {
-            node.getRbrace().apply(this);
-        }
-        outAAssignmentHelper(node);
     }
 
     public void inAStatementListHelper(AStatementListHelper node)

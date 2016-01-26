@@ -6,13 +6,12 @@
  */
 
 package com.bju.cps450;
-import com.bju.cps450.CmdParser.*;
-import com.bju.cps450.FileManager.*;
-import com.bju.cps450.node.*;
+import com.bju.cps450.lexer.LexerException;
+import com.bju.cps450.node.Token;
+import com.bju.cps450.parser.Parser;
+import com.bju.cps450.parser.ParserException;
 
 import java.io.IOException;
-
-import com.bju.cps450.lexer.LexerException;
 
 public class Oodle
 {
@@ -67,13 +66,19 @@ public class Oodle
 			System.out.println("");
 			OodleLexer lexer = new OodleLexer(manager, manager.getTempFileName(), CmdParser.print);
 			token = null;
-			while (!(token instanceof EOF))
-			{
-				token = lexer.next();
+			//while (!(token instanceof EOF))
+			//{
+			//	token = lexer.next();
+			//}
+			Parser oodleParser = new Parser(lexer);
+			try {
+				oodleParser.parse();
+			} catch (ParserException e) {
+				System.out.println(e.getMessage() + " got: " + e.getToken().getText());
 			}
-			
-			
-    	}
+
+
+		}
     }
 }
 

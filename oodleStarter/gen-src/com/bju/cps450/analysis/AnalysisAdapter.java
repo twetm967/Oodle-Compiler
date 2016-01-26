@@ -231,7 +231,19 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAQtExpressionLvl4(AQtExpressionLvl4 node)
+    public void caseAEqExpressionLvl4(AEqExpressionLvl4 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAGtExpressionLvl4(AGtExpressionLvl4 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAGteExpressionLvl4(AGteExpressionLvl4 node)
     {
         defaultCase(node);
     }
@@ -297,6 +309,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAAddExpressionLvl1(AAddExpressionLvl1 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseANegExpressionLvl1(ANegExpressionLvl1 node)
     {
         defaultCase(node);
@@ -310,12 +328,6 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAIdentifierExpressionLvl0(AIdentifierExpressionLvl0 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAExpressionLvl0(AExpressionLvl0 node)
     {
         defaultCase(node);
     }
@@ -351,25 +363,25 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAMeExpressionLvl0(AMeExpressionLvl0 node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAExprExpressionLvl0(AExprExpressionLvl0 node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAParenexprExpressionLvl0(AParenexprExpressionLvl0 node)
+    public void caseAMcallExpressionLvl0(AMcallExpressionLvl0 node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAExprarrayExpressionLvl0(AExprarrayExpressionLvl0 node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAMethodCallExpr(AMethodCallExpr node)
+    public void caseAArrayExpressionLvl0(AArrayExpressionLvl0 node)
     {
         defaultCase(node);
     }
@@ -412,12 +424,6 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAIfElse(AIfElse node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAAssignmentHelper(AAssignmentHelper node)
     {
         defaultCase(node);
     }
@@ -669,7 +675,19 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTComparison(TComparison node)
+    public void caseTEqual(TEqual node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTGreaterThan(TGreaterThan node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTGreaterEq(TGreaterEq node)
     {
         defaultCase(node);
     }

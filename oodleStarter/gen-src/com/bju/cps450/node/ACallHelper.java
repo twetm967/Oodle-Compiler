@@ -7,7 +7,7 @@ import com.bju.cps450.analysis.*;
 @SuppressWarnings("nls")
 public final class ACallHelper extends PCallHelper
 {
-    private PExpression _expression_;
+    private PExpressionLvl0 _expressionLvl0_;
     private TDot _dot_;
 
     public ACallHelper()
@@ -16,11 +16,11 @@ public final class ACallHelper extends PCallHelper
     }
 
     public ACallHelper(
-        @SuppressWarnings("hiding") PExpression _expression_,
+        @SuppressWarnings("hiding") PExpressionLvl0 _expressionLvl0_,
         @SuppressWarnings("hiding") TDot _dot_)
     {
         // Constructor
-        setExpression(_expression_);
+        setExpressionLvl0(_expressionLvl0_);
 
         setDot(_dot_);
 
@@ -30,7 +30,7 @@ public final class ACallHelper extends PCallHelper
     public Object clone()
     {
         return new ACallHelper(
-            cloneNode(this._expression_),
+            cloneNode(this._expressionLvl0_),
             cloneNode(this._dot_));
     }
 
@@ -40,16 +40,16 @@ public final class ACallHelper extends PCallHelper
         ((Analysis) sw).caseACallHelper(this);
     }
 
-    public PExpression getExpression()
+    public PExpressionLvl0 getExpressionLvl0()
     {
-        return this._expression_;
+        return this._expressionLvl0_;
     }
 
-    public void setExpression(PExpression node)
+    public void setExpressionLvl0(PExpressionLvl0 node)
     {
-        if(this._expression_ != null)
+        if(this._expressionLvl0_ != null)
         {
-            this._expression_.parent(null);
+            this._expressionLvl0_.parent(null);
         }
 
         if(node != null)
@@ -62,7 +62,7 @@ public final class ACallHelper extends PCallHelper
             node.parent(this);
         }
 
-        this._expression_ = node;
+        this._expressionLvl0_ = node;
     }
 
     public TDot getDot()
@@ -94,7 +94,7 @@ public final class ACallHelper extends PCallHelper
     public String toString()
     {
         return ""
-            + toString(this._expression_)
+            + toString(this._expressionLvl0_)
             + toString(this._dot_);
     }
 
@@ -102,9 +102,9 @@ public final class ACallHelper extends PCallHelper
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expression_ == child)
+        if(this._expressionLvl0_ == child)
         {
-            this._expression_ = null;
+            this._expressionLvl0_ = null;
             return;
         }
 
@@ -121,9 +121,9 @@ public final class ACallHelper extends PCallHelper
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expression_ == oldChild)
+        if(this._expressionLvl0_ == oldChild)
         {
-            setExpression((PExpression) newChild);
+            setExpressionLvl0((PExpressionLvl0) newChild);
             return;
         }
 

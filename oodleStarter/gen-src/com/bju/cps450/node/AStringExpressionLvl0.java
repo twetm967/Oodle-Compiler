@@ -7,6 +7,7 @@ import com.bju.cps450.analysis.*;
 @SuppressWarnings("nls")
 public final class AStringExpressionLvl0 extends PExpressionLvl0
 {
+    private TStrStart _strStart_;
     private TStrIteral _strIteral_;
 
     public AStringExpressionLvl0()
@@ -15,9 +16,12 @@ public final class AStringExpressionLvl0 extends PExpressionLvl0
     }
 
     public AStringExpressionLvl0(
+        @SuppressWarnings("hiding") TStrStart _strStart_,
         @SuppressWarnings("hiding") TStrIteral _strIteral_)
     {
         // Constructor
+        setStrStart(_strStart_);
+
         setStrIteral(_strIteral_);
 
     }
@@ -26,6 +30,7 @@ public final class AStringExpressionLvl0 extends PExpressionLvl0
     public Object clone()
     {
         return new AStringExpressionLvl0(
+            cloneNode(this._strStart_),
             cloneNode(this._strIteral_));
     }
 
@@ -33,6 +38,31 @@ public final class AStringExpressionLvl0 extends PExpressionLvl0
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAStringExpressionLvl0(this);
+    }
+
+    public TStrStart getStrStart()
+    {
+        return this._strStart_;
+    }
+
+    public void setStrStart(TStrStart node)
+    {
+        if(this._strStart_ != null)
+        {
+            this._strStart_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._strStart_ = node;
     }
 
     public TStrIteral getStrIteral()
@@ -64,6 +94,7 @@ public final class AStringExpressionLvl0 extends PExpressionLvl0
     public String toString()
     {
         return ""
+            + toString(this._strStart_)
             + toString(this._strIteral_);
     }
 
@@ -71,6 +102,12 @@ public final class AStringExpressionLvl0 extends PExpressionLvl0
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._strStart_ == child)
+        {
+            this._strStart_ = null;
+            return;
+        }
+
         if(this._strIteral_ == child)
         {
             this._strIteral_ = null;
@@ -84,6 +121,12 @@ public final class AStringExpressionLvl0 extends PExpressionLvl0
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._strStart_ == oldChild)
+        {
+            setStrStart((TStrStart) newChild);
+            return;
+        }
+
         if(this._strIteral_ == oldChild)
         {
             setStrIteral((TStrIteral) newChild);

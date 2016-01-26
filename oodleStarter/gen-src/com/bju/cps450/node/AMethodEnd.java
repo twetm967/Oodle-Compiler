@@ -2,6 +2,7 @@
 
 package com.bju.cps450.node;
 
+import java.util.*;
 import com.bju.cps450.analysis.*;
 
 @SuppressWarnings("nls")
@@ -9,7 +10,7 @@ public final class AMethodEnd extends PMethodEnd
 {
     private TEnd _end_;
     private TIdentifier _identifier_;
-    private TNewline _newline_;
+    private final LinkedList<TNewline> _newline_ = new LinkedList<TNewline>();
 
     public AMethodEnd()
     {
@@ -19,7 +20,7 @@ public final class AMethodEnd extends PMethodEnd
     public AMethodEnd(
         @SuppressWarnings("hiding") TEnd _end_,
         @SuppressWarnings("hiding") TIdentifier _identifier_,
-        @SuppressWarnings("hiding") TNewline _newline_)
+        @SuppressWarnings("hiding") List<?> _newline_)
     {
         // Constructor
         setEnd(_end_);
@@ -36,7 +37,7 @@ public final class AMethodEnd extends PMethodEnd
         return new AMethodEnd(
             cloneNode(this._end_),
             cloneNode(this._identifier_),
-            cloneNode(this._newline_));
+            cloneList(this._newline_));
     }
 
     @Override
@@ -95,29 +96,30 @@ public final class AMethodEnd extends PMethodEnd
         this._identifier_ = node;
     }
 
-    public TNewline getNewline()
+    public LinkedList<TNewline> getNewline()
     {
         return this._newline_;
     }
 
-    public void setNewline(TNewline node)
+    public void setNewline(List<?> list)
     {
-        if(this._newline_ != null)
+        for(TNewline e : this._newline_)
         {
-            this._newline_.parent(null);
+            e.parent(null);
         }
+        this._newline_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            TNewline e = (TNewline) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._newline_.add(e);
         }
-
-        this._newline_ = node;
     }
 
     @Override
@@ -145,9 +147,8 @@ public final class AMethodEnd extends PMethodEnd
             return;
         }
 
-        if(this._newline_ == child)
+        if(this._newline_.remove(child))
         {
-            this._newline_ = null;
             return;
         }
 
@@ -170,10 +171,22 @@ public final class AMethodEnd extends PMethodEnd
             return;
         }
 
-        if(this._newline_ == oldChild)
+        for(ListIterator<TNewline> i = this._newline_.listIterator(); i.hasNext();)
         {
-            setNewline((TNewline) newChild);
-            return;
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((TNewline) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

@@ -9,7 +9,7 @@ import com.bju.cps450.analysis.*;
 public final class AAssignmentStmt extends PAssignmentStmt
 {
     private TIdentifier _identifier_;
-    private final LinkedList<PAssignmentHelper> _assignmentHelper_ = new LinkedList<PAssignmentHelper>();
+    private final LinkedList<PExpressionHelper> _expressionHelper_ = new LinkedList<PExpressionHelper>();
     private TAssignment _assignment_;
     private PExpression _expression_;
 
@@ -20,14 +20,14 @@ public final class AAssignmentStmt extends PAssignmentStmt
 
     public AAssignmentStmt(
         @SuppressWarnings("hiding") TIdentifier _identifier_,
-        @SuppressWarnings("hiding") List<?> _assignmentHelper_,
+        @SuppressWarnings("hiding") List<?> _expressionHelper_,
         @SuppressWarnings("hiding") TAssignment _assignment_,
         @SuppressWarnings("hiding") PExpression _expression_)
     {
         // Constructor
         setIdentifier(_identifier_);
 
-        setAssignmentHelper(_assignmentHelper_);
+        setExpressionHelper(_expressionHelper_);
 
         setAssignment(_assignment_);
 
@@ -40,7 +40,7 @@ public final class AAssignmentStmt extends PAssignmentStmt
     {
         return new AAssignmentStmt(
             cloneNode(this._identifier_),
-            cloneList(this._assignmentHelper_),
+            cloneList(this._expressionHelper_),
             cloneNode(this._assignment_),
             cloneNode(this._expression_));
     }
@@ -76,29 +76,29 @@ public final class AAssignmentStmt extends PAssignmentStmt
         this._identifier_ = node;
     }
 
-    public LinkedList<PAssignmentHelper> getAssignmentHelper()
+    public LinkedList<PExpressionHelper> getExpressionHelper()
     {
-        return this._assignmentHelper_;
+        return this._expressionHelper_;
     }
 
-    public void setAssignmentHelper(List<?> list)
+    public void setExpressionHelper(List<?> list)
     {
-        for(PAssignmentHelper e : this._assignmentHelper_)
+        for(PExpressionHelper e : this._expressionHelper_)
         {
             e.parent(null);
         }
-        this._assignmentHelper_.clear();
+        this._expressionHelper_.clear();
 
         for(Object obj_e : list)
         {
-            PAssignmentHelper e = (PAssignmentHelper) obj_e;
+            PExpressionHelper e = (PExpressionHelper) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
             }
 
             e.parent(this);
-            this._assignmentHelper_.add(e);
+            this._expressionHelper_.add(e);
         }
     }
 
@@ -157,7 +157,7 @@ public final class AAssignmentStmt extends PAssignmentStmt
     {
         return ""
             + toString(this._identifier_)
-            + toString(this._assignmentHelper_)
+            + toString(this._expressionHelper_)
             + toString(this._assignment_)
             + toString(this._expression_);
     }
@@ -172,7 +172,7 @@ public final class AAssignmentStmt extends PAssignmentStmt
             return;
         }
 
-        if(this._assignmentHelper_.remove(child))
+        if(this._expressionHelper_.remove(child))
         {
             return;
         }
@@ -202,13 +202,13 @@ public final class AAssignmentStmt extends PAssignmentStmt
             return;
         }
 
-        for(ListIterator<PAssignmentHelper> i = this._assignmentHelper_.listIterator(); i.hasNext();)
+        for(ListIterator<PExpressionHelper> i = this._expressionHelper_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PAssignmentHelper) newChild);
+                    i.set((PExpressionHelper) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;

@@ -7,7 +7,7 @@ import com.bju.cps450.analysis.*;
 @SuppressWarnings("nls")
 public final class AStringType extends PType
 {
-    private TStrIteral _strIteral_;
+    private TString _string_;
 
     public AStringType()
     {
@@ -15,10 +15,10 @@ public final class AStringType extends PType
     }
 
     public AStringType(
-        @SuppressWarnings("hiding") TStrIteral _strIteral_)
+        @SuppressWarnings("hiding") TString _string_)
     {
         // Constructor
-        setStrIteral(_strIteral_);
+        setString(_string_);
 
     }
 
@@ -26,7 +26,7 @@ public final class AStringType extends PType
     public Object clone()
     {
         return new AStringType(
-            cloneNode(this._strIteral_));
+            cloneNode(this._string_));
     }
 
     @Override
@@ -35,16 +35,16 @@ public final class AStringType extends PType
         ((Analysis) sw).caseAStringType(this);
     }
 
-    public TStrIteral getStrIteral()
+    public TString getString()
     {
-        return this._strIteral_;
+        return this._string_;
     }
 
-    public void setStrIteral(TStrIteral node)
+    public void setString(TString node)
     {
-        if(this._strIteral_ != null)
+        if(this._string_ != null)
         {
-            this._strIteral_.parent(null);
+            this._string_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AStringType extends PType
             node.parent(this);
         }
 
-        this._strIteral_ = node;
+        this._string_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._strIteral_);
+            + toString(this._string_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._strIteral_ == child)
+        if(this._string_ == child)
         {
-            this._strIteral_ = null;
+            this._string_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AStringType extends PType
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._strIteral_ == oldChild)
+        if(this._string_ == oldChild)
         {
-            setStrIteral((TStrIteral) newChild);
+            setString((TString) newChild);
             return;
         }
 

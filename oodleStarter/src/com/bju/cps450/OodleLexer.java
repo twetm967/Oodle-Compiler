@@ -74,7 +74,7 @@ public class OodleLexer extends Lexer {
 	public boolean isOperator(Token _token)
 	{
 		if (_token instanceof TStrconcat || _token instanceof TAddition || _token instanceof TSubtraction ||_token instanceof TMultiplication ||
-				_token instanceof TDivision || _token instanceof TComparison || _token instanceof TAssignment)
+				_token instanceof TDivision || _token instanceof TGreaterEq || _token instanceof TGreaterThan || _token instanceof TEqual || _token instanceof TAssignment)
 		{
 			return true;
 		}

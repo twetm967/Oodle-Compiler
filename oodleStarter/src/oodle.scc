@@ -66,7 +66,9 @@ Tokens
   subtraction = '-' ;
   multiplication = '*';
   division = '/' ;
-  comparison = ['>' + '<']? '=' ;
+  equal = '=';
+  greater_than = '>';
+  greater_eq = '>=';
   assignment = ':=' ;
   lparen = '(' ;
   rparen = ')' ;
@@ -85,6 +87,9 @@ Tokens
   comment = '~' [all_chars - eol_chars]* ;
   unknown = all_chars ;
 
+Ignored Tokens
+    blank, ignored_newline, comment;
+
 Productions
   start = [left]:T.newline* [init]:class inner_class* [right]:T.newline*;
 
@@ -99,7 +104,7 @@ Productions
   argument_decl = T.identifier T.colon type;
 
   type = {int}       T.int
-       | {string}    T.str_iteral
+       | {string}    T.string
        | {boolean}   T.boolean
        | {id}        T.identifier
        | {array}     T.lbrace expression? T.rbrace;
@@ -111,7 +116,7 @@ Productions
         |{loop}   loop_stmt
         |{call}   call_stmt;
 
-  assignment_stmt = T.identifier assignment_helper* T.assignment expression;
+  assignment_stmt = T.identifier expression_helper* T.assignment expression;
 
   if_stmt = [left]:T.if expression T.then T.newline+ statement_list if_else? T.end [right]:T.if;
 
@@ -129,54 +134,55 @@ Productions
   expression_lvl5 = {and}  expression_lvl5 T.and expression_lvl4
                     | {pass} expression_lvl4;
 
-  expression_lvl4 = {qt}   [left]:expression_lvlc T.comparison [right]:expression_lvlc
+  expression_lvl4 = {eq}   [left]:expression_lvlc T.equal [right]:expression_lvlc
+                    | {gt}    [left]:expression_lvlc T.greater_eq [right]:expression_lvlc
+                    | {gte}   [left]:expression_lvlc T.greater_than [right]:expression_lvlc
                     | {pass} expression_lvlc;
 
-  expression_lvlc =  {concat}  expression_lvlc T.strconcat expression_lvl3
-                    |   {pass} expression_lvl3;
+  expression_lvlc = {concat}  expression_lvlc T.strconcat expression_lvl3
+                  |{pass}   expression_lvl3;
 
-  expression_lvl3 = {add}  expression_lvl3 T.addition expression_lvl2
-                  | {sub}  expression_lvl3 T.subtraction expression_lvl2
-                  | {pass} expression_lvl2;
+  expression_lvl3 = {add}   expression_lvl3 T.addition expression_lvl2
+                  | {sub}   expression_lvl3 T.subtraction expression_lvl2
+                  | {pass}  expression_lvl2;
 
-  expression_lvl2 = {mul}  expression_lvl2 T.multiplication expression_lvl1
-                  | {div}  expression_lvl2 T.division expression_lvl1
-                  | {pass} expression_lvl1;
+  expression_lvl2 = {mul}   expression_lvl2 T.multiplication expression_lvl1
+                  | {div}   expression_lvl2 T.division expression_lvl1
+                  | {pass}  expression_lvl1;
 
-  expression_lvl1 = {not}  T.not expression_lvl1
-                  | {neg}  T.subtraction expression_lvl1
-                  | {pass} expression_lvl0;
+  expression_lvl1 = {not}   T.not expression_lvl1
+                  | {add}   T.addition expression_lvl1
+                  | {neg}   T.subtraction expression_lvl1
+                  | {pass}  expression_lvl0;
 
   expression_lvl0 = {identifier}  T.identifier
-                  | | {string}    T.str_iteral
+                  | {string}      T.str_start T.str_iteral
                   | {int}         T.int_literal
                   | {true}        T.true
                   | {false}       T.false
                   | {new_obj}     T.new type
+                  | {me}          T.me
                   | {expr}        T.lparen expression T.rparen
-                  | {parenexpr}   call_helper? T.identifier T.lparen expression_list? T.rparen
-                  | {exprarray}   T.identifier [left]:expression_helper [right]:expression_helper*;
+                  | {mcall}       call_helper? T.identifier T.lparen expression_list? T.rparen
+                  | {array}       T.identifier expression_helper+;
 
 
-   method_call_expr = expression_lvl0 T.dot;
 
   //helpers
-  method_header = T.identifier T.lparen argument_decl_list T.rparen var_type? T.is T.newline+ var_decl* ;
+  method_header = T.identifier T.lparen argument_decl_list? T.rparen var_type? T.is T.newline+ var_decl* ;
 
-  method_middle = T.begin T.newline statement_list;
+  method_middle = T.begin T.newline+ statement_list;
 
-  method_end = T.end T.identifier T.newline;
+  method_end = T.end T.identifier T.newline+;
 
 
   expression_list_helper = expression T.comma;
 
   expression_helper = T.lbrace expression T.rbrace;
 
-  call_helper = expression T.dot;
+  call_helper = expression_lvl0 T.dot;
 
   if_else = T.else T.newline+ statement_list;
-
-  assignment_helper = T.lbrace expression T.rbrace;
 
   statement_list_helper = statement T.newline+;
 
@@ -188,6 +194,6 @@ Productions
 
   inherits_from = T.inherits T.from T.identifier;
 
-  inner_class = T.newline* T.class_key;
+  inner_class = T.newline+ T.class_key;
 
   
