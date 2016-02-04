@@ -2,35 +2,206 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01710a5d-0254-4a86-8265-ca12c9772659" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AAssignmentHelper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AExprarrayExpressionLvl0.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AExpressionLvl0.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AMethodCallExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AParenexprExpressionLvl0.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AQtExpressionLvl4.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/PAssignmentHelper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/PMethodCallExpr.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/TComparison.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/analysis/Analysis.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/analysis/AnalysisAdapter.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/analysis/DepthFirstAdapter.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/analysis/ReversedDepthFirstAdapter.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/lexer/IPushbackReader.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/lexer/Lexer$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/lexer/Lexer$State.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/lexer/Lexer.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/lexer/LexerException.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AAddExpressionLvl1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AAddExpressionLvl3.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AAndExpressionLvl5.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AArgListHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AArgumentDecl.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AArgumentDeclList.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AArrayExpressionLvl0.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AArrayType.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AAsgnStatement.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AAssignmentStmt.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ABooleanType.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ACallHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ACallStatement.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ACallStmt.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AClass.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AConcatExpressionLvlc.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ADivExpressionLvl2.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AEqExpressionLvl4.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AExprExpressionLvl0.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AExpression.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AExpressionHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AExpressionList.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AExpressionListHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AFalseExpressionLvl0.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AGtExpressionLvl4.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AGteExpressionLvl4.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AIdType.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AIdentifierExpressionLvl0.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AIfElse.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AIfStatement.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AIfStmt.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AInheritsFrom.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AInnerClass.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AIntExpressionLvl0.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AIntType.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ALoopStatement.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ALoopStmt.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AMcallExpressionLvl0.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AMeExpressionLvl0.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AMethodDecl.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AMethodEnd.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AMethodHeader.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AMethodMiddle.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AMulExpressionLvl2.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ANegExpressionLvl1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ANewObjExpressionLvl0.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ANotExpressionLvl1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AOrExpressionLvl6.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/APassExpressionLvl1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/APassExpressionLvl2.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/APassExpressionLvl3.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/APassExpressionLvl4.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/APassExpressionLvl5.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/APassExpressionLvl6.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/APassExpressionLvlc.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AStart.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AStatementList.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AStatementListHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AStringExpressionLvl0.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AStringType.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ASubExpressionLvl3.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/ATrueExpressionLvl0.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AVarDecl.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AVarExp.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/AVarType.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/EOF.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/InvalidToken.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PArgListHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PArgumentDecl.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PArgumentDeclList.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PAssignmentStmt.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PCallHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PCallStmt.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PClass.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpression.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpressionHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpressionList.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpressionListHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpressionLvl0.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpressionLvl1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpressionLvl2.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpressionLvl3.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpressionLvl4.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpressionLvl5.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpressionLvl6.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PExpressionLvlc.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PIfElse.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PIfStmt.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PInheritsFrom.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PInnerClass.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PLoopStmt.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PMethodDecl.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PMethodEnd.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PMethodHeader.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PMethodMiddle.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PStart.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PStatement.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PStatementList.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PStatementListHelper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PType.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PVarDecl.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PVarExp.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/PVarType.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/Start.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TAddition.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TAnd.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TAssignment.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TBegin.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TBlank.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TBoolean.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TClassKey.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TColon.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TComma.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TComment.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TDivision.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TDot.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TElse.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TEnd.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TEqual.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TFalse.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TFrom.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TGreaterEq.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TGreaterThan.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TIdentifier.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TIf.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TIgnoredNewline.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TIllegalStr.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TInherits.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TInt.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TIntLiteral.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TIs.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TLbrace.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TLoop.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TLparen.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TMe.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TMultiplication.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TNew.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TNewline.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TNot.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TNull.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TOr.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TRbrace.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TRparen.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TSemicolon.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TStrIteral.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TStrStart.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TStrconcat.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TString.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TSubtraction.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TThen.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TTrue.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TUnknown.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TUnterminatedStr.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/node/TWhile.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/parser/Parser.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/parser/ParserException.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/parser/State.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/parser/TokenIndex.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/parser/parser.dat" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/parser/parser.dat" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AAddExpressionLvl1.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AArrayExpressionLvl0.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AEqExpressionLvl4.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AGtExpressionLvl4.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AGteExpressionLvl4.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AMcallExpressionLvl0.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AMeExpressionLvl0.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/TEqual.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/TGreaterEq.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/TGreaterThan.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/parser/Parser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/parser/ParserException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/parser/State.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/parser/TokenIndex.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/badexpr1.ood" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/badexpr2.ood" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/badexpr3.ood" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/badexpr4.ood" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/cptestbad.ood" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/cptestok.ood" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/goodexpr4.ood" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/goodtest1.ood" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/goodtest2.ood" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/part1.ood" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/part2.ood" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phase2/stuff.ood" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/oodle.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/com/bju/cps450/Oodle.class" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/Oodle.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/com/bju/cps450/OodleLexer.class" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/OodleLexer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/com/bju/cps450/lexer/lexer.dat" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/lexer/lexer.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/lexer/lexer.dat" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/lexer/lexer.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/oodle.scc" afterPath="$PROJECT_DIR$/bin/oodle.scc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/analysis/Analysis.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/analysis/Analysis.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/analysis/AnalysisAdapter.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/analysis/AnalysisAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/analysis/DepthFirstAdapter.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/analysis/DepthFirstAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/analysis/ReversedDepthFirstAdapter.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/analysis/ReversedDepthFirstAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/lexer/Lexer.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/lexer/Lexer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AAssignmentStmt.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AAssignmentStmt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/ACallHelper.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/ACallHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AMethodEnd.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AMethodEnd.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AMethodMiddle.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AMethodMiddle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AStringExpressionLvl0.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AStringExpressionLvl0.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AStringType.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AStringType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bju/cps450/Oodle.java" afterPath="$PROJECT_DIR$/src/com/bju/cps450/Oodle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bju/cps450/OodleLexer.java" afterPath="$PROJECT_DIR$/src/com/bju/cps450/OodleLexer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oodle.scc" afterPath="$PROJECT_DIR$/src/oodle.scc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tempOodleFile.ood" afterPath="$PROJECT_DIR$/tempOodleFile.ood" />
     </list>
     <ignored path="oodleStarter.iws" />
@@ -56,8 +227,8 @@
       <file leaf-file-name="Oodle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/Oodle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49515608">
-              <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.9089457">
+              <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,16 +251,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="245" column="16" selection-start-line="245" selection-start-column="16" selection-end-line="245" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LexerTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -153,8 +314,8 @@
         <option value="$PROJECT_DIR$/src/com/bju/cps450/FileManager.java" />
         <option value="$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java" />
         <option value="$PROJECT_DIR$/src/com/bju/cps450/OodleLexer.java" />
-        <option value="$PROJECT_DIR$/src/com/bju/cps450/Oodle.java" />
         <option value="$PROJECT_DIR$/src/oodle.scc" />
+        <option value="$PROJECT_DIR$/src/com/bju/cps450/Oodle.java" />
       </list>
     </option>
   </component>
@@ -381,7 +542,7 @@
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="oodlestarter" />
   </component>
-  <component name="RunManager" selected="Application.testbadood">
+  <component name="RunManager" selected="Application.phase2TestGood">
     <configuration default="false" name="Oodle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -725,11 +886,11 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="testbadood" type="Application" factoryName="Application">
+    <configuration default="false" name="phase1" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="com.bju.cps450.Oodle" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="tests/phase2/cptestbad.ood" />
+      <option name="PROGRAM_PARAMETERS" value="-ds tests/phase1/test1.ood tests/phase1/test2.ood" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -763,7 +924,7 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Application.phase2TestGood" />
-      <item index="1" class="java.lang.String" itemvalue="Application.testbadood" />
+      <item index="1" class="java.lang.String" itemvalue="Application.phase1" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.Unnamed" />
       <item index="3" class="java.lang.String" itemvalue="Application.Oodle" />
       <item index="4" class="java.lang.String" itemvalue="JUnit.LexerTest.testSuccessfulScan" />
@@ -835,27 +996,27 @@
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.49806523" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06909895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16749585" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39907193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.50193477" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.49806523" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33993745" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.49806523" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16196793" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.50193477" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.49806523" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31595412" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39907193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23200859" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32714617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
@@ -915,10 +1076,62 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/Oodle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.ood">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/com/bju/cps450/parser/Parser.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="245" column="16" selection-start-line="245" selection-start-column="16" selection-end-line="245" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/OodleLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oodle.scc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -967,14 +1180,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/OodleLexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1019,14 +1224,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/OodleLexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1068,14 +1265,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1123,14 +1312,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/OodleLexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1175,14 +1356,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/OodleLexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1211,14 +1384,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/OodleLexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1244,14 +1409,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1280,22 +1437,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test1.ood">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1303,10 +1444,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/test/LexerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/Oodle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9089457">
+          <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.ood">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/com/bju/cps450/parser/Parser.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="245" column="16" selection-start-line="245" selection-start-column="16" selection-end-line="245" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1321,22 +1480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/com/bju/cps450/parser/Parser.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="245" column="16" selection-start-line="245" selection-start-column="16" selection-end-line="245" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.ood">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/oodle.scc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1345,13 +1488,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/Oodle.java">
+    <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49515608">
-          <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

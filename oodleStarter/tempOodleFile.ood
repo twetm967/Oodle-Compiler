@@ -4,7 +4,7 @@ class Main is
   start() is
   begin
     if x > 5 then
-      x:= -5 + 5 + 8
+      x:= -5 + 5 
       z:= not a or c
 
        
