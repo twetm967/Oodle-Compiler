@@ -1,15 +1,8 @@
 package com.bju.cps450;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import com.bju.cps450.OriginalOodFile.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 
 public class FileManager {
 	private List<String> _oodFiles = new ArrayList<String>();
@@ -29,30 +22,34 @@ public class FileManager {
 		 _oodFiles = oodFiles;
 		 _tempFileName = tempFileName;
 	}
+
+	//merges oodle files together for lexical analysis
 	public void mergeFiles()
 	{
 		_lineCounter = 1;
 		try
 		{
 			tempFile = null;
+			//creates a temp file to store the compined files
 			tempFile = new File(_tempFileName);
 			System.out.println("Creating temp file");
 	    	if(tempFile.exists())
 	        {
 	    		tempFile.delete(); 
 	        }
+			//actually creates the file
 	    	FileWriter fw = new FileWriter(tempFile);
 			BufferedWriter bw = new BufferedWriter(fw);
 			System.out.println("Number of Files to combine: " + _oodFiles.size());
+			//loops through files to combine into the tempfile
 	    	for(String file : _oodFiles)
 	    	{
 	    		OriginalOodFile nFile = new OriginalOodFile();
-	    		nFile.setStart(_lineCounter);
+	    		nFile.setStart(_lineCounter); //keeps track of original file start line number
 	    		nFile.setFileName(file);
-	    		nFile.setOffset(_lineCounter -1);
+	    		nFile.setOffset(_lineCounter -1); //original fil offset
 	    		try(BufferedReader br = new BufferedReader(new FileReader(file))) {
 	    		    for(String line; (line = br.readLine()) != null; ++_lineCounter) {
-	    		    	//System.out.println("writing data to tempfile");
 	    		        bw.write(line + '\n');
 	    		    }
 	    		}
@@ -60,7 +57,7 @@ public class FileManager {
 				catch(IOException ioe){
 					System.out.println("IO Exception" + ioe);
 				}
-	    		nFile.setEnd(_lineCounter);
+	    		nFile.setEnd(_lineCounter);// original file end line number
 	    		originalFileMaps.add(nFile);
 	    	}
 	    	bw.close();
@@ -70,6 +67,8 @@ public class FileManager {
 			System.out.println("IO Exception" + ioe);
 		}
 	}
+
+	//gets file information and line numbers for lexical output
 	public String getFileInformation(int line)
 	{
 		String tokenInfo = "";

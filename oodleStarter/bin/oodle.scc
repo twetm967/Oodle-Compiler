@@ -91,6 +91,7 @@ Ignored Tokens
     blank, ignored_newline, comment;
 
 Productions
+    //start production: <start> :=	[ <cr> ] <class> { <cr> <class> } [ <cr> ]
   start = [left]:T.newline* [init]:class inner_class* [right]:T.newline*;
 
   class = T.class_key [left]:T.identifier inherits_from? T.is T.newline+ var_decl* method_decl* T.end [right]:T.identifier;
@@ -169,31 +170,43 @@ Productions
 
 
   //helpers
+  //method header: "id ( [ <argument_decl_list> ] ) [ : <type> ] is <cr> { <var_decl> }"
   method_header = T.identifier T.lparen argument_decl_list? T.rparen var_type? T.is T.newline+ var_decl* ;
 
+  //method middle: "begin <cr> <statement_list>"
   method_middle = T.begin T.newline+ statement_list;
 
+  //method end: "end id <cr>"
   method_end = T.end T.identifier T.newline+;
 
-
+  //beginning of expression list: "{ <expression> , }"
   expression_list_helper = expression T.comma;
 
+  //expression call helper: "[ <expression> ]"
   expression_helper = T.lbrace expression T.rbrace;
 
+  //expression dot: "<expression> ."
   call_helper = expression_lvl0 T.dot;
 
+  //if /else/ helper: "else <cr> <statement_list>"
   if_else = T.else T.newline+ statement_list;
 
+  //statement list helper: "<statement> <cr>"
   statement_list_helper = statement T.newline+;
 
+  //type declaration: ": <type>"
   var_type = T.colon type;
 
+  //var assignment: ":= <expression>"
   var_exp = T.assignment expression;
 
+  //argument declaration: "id : <type> ;"
   arg_list_helper = argument_decl T.semicolon;
 
+  //inheritance: "inherits from id"
   inherits_from = T.inherits T.from T.identifier;
 
+  //inner class: " { <cr> <class> }"
   inner_class = T.newline+ T.class_key;
 
   
