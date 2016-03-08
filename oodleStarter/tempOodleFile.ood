@@ -1,5 +1,6 @@
 ~ This is a comment
   
+<<<<<<< HEAD
 and boolean begin class else end false from if inherits int is loop new not or string then true while
 asdf23 _asdf5 2af_2_   _
 1234 0 -326
@@ -14,6 +15,22 @@ asdf23 _asdf5 2af_2_   _
 "
 %
 ~ Another comment
+=======
+  start() is
+  begin
+    if x > 5 then
+      x:= -5 + 5 
+      z:= not a or c
+
+       
+    end if
+  end start
+
+  m2(a:int; b:string): boolean is
+  a2: boolean
+  a3: int
+  begin
+>>>>>>> 58aaed4f372f9dc1be8407495343133a4b6a6f50
   
 some stuff
 ^
