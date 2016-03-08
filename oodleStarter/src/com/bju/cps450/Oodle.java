@@ -66,7 +66,7 @@ public class Oodle
 			System.out.println("");
 			OodleLexer lexer = new OodleLexer(manager, manager.getTempFileName(), CmdParser.print);
 			token = null;
-			//while (!(token instanceof EOF))
+			//zwhile (!(token instanceof EOF))
 			//{
 			//	token = lexer.next();
 			//}
