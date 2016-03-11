@@ -207,6 +207,6 @@ Productions
   inherits_from = T.inherits T.from T.identifier;
 
   //inner class: " { <cr> <class> }"
-  inner_class = T.newline+ T.class_key;
+  inner_class = T.newline+ class;
 
   
