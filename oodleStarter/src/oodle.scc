@@ -52,7 +52,7 @@ Tokens
   or = 'or' ;
   not = 'not' ;
 
-  int_literal = sign? number ;
+  int_literal = number ;
 
 // *****strings*******
   {normal -> in_string} str_start = '"' ;
@@ -108,7 +108,7 @@ Productions
        | {string}    T.string
        | {boolean}   T.boolean
        | {id}        T.identifier
-       | {array}     T.lbrace expression? T.rbrace;
+       | {array}     type T.lbrace expression? T.rbrace;
 
   statement_list = statement_list_helper*;
 
