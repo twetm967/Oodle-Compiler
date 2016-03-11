@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01710a5d-0254-4a86-8265-ca12c9772659" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/com/bju/cps450/Oodle.class" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/Oodle.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tempOodleFile.ood" afterPath="$PROJECT_DIR$/tempOodleFile.ood" />
-    </list>
+    <list default="true" id="01710a5d-0254-4a86-8265-ca12c9772659" name="Default" comment="" />
     <ignored path="oodleStarter.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -27,8 +24,8 @@
             <file leaf-file-name="oodle.scc" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/oodle.scc">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.07786885">
-                    <caret line="167" column="66" selection-start-line="167" selection-start-column="66" selection-end-line="167" selection-end-column="66" />
+                  <state vertical-scroll-proportion="0.40983605">
+                    <caret line="110" column="21" selection-start-line="110" selection-start-column="21" selection-end-line="110" selection-end-column="21" />
                     <folding />
                   </state>
                 </provider>
@@ -48,8 +45,8 @@
       <file leaf-file-name="Oodle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/Oodle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8643703">
-              <caret line="76" column="87" selection-start-line="76" selection-start-column="87" selection-end-line="76" selection-end-column="87" />
+            <state vertical-scroll-proportion="0.12809473">
+              <caret line="38" column="27" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1127,21 +1124,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/oodle.scc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07786885">
-          <caret line="167" column="66" selection-start-line="167" selection-start-column="66" selection-end-line="167" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/Oodle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8643703">
-          <caret line="76" column="87" selection-start-line="76" selection-start-column="87" selection-end-line="76" selection-end-column="87" />
+        <state vertical-scroll-proportion="0.12809473">
+          <caret line="38" column="27" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oodle.scc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40983605">
+          <caret line="110" column="21" selection-start-line="110" selection-start-column="21" selection-end-line="110" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
