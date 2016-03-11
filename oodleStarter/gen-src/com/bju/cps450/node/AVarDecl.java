@@ -2,16 +2,14 @@
 
 package com.bju.cps450.node;
 
-import java.util.*;
 import com.bju.cps450.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AVarDecl extends PVarDecl
 {
     private TIdentifier _identifier_;
-    private PVarType _varType_;
-    private PVarExp _varExp_;
-    private final LinkedList<TNewline> _newline_ = new LinkedList<TNewline>();
+    private PType _type_;
+    private PExpression _expression_;
 
     public AVarDecl()
     {
@@ -20,18 +18,15 @@ public final class AVarDecl extends PVarDecl
 
     public AVarDecl(
         @SuppressWarnings("hiding") TIdentifier _identifier_,
-        @SuppressWarnings("hiding") PVarType _varType_,
-        @SuppressWarnings("hiding") PVarExp _varExp_,
-        @SuppressWarnings("hiding") List<?> _newline_)
+        @SuppressWarnings("hiding") PType _type_,
+        @SuppressWarnings("hiding") PExpression _expression_)
     {
         // Constructor
         setIdentifier(_identifier_);
 
-        setVarType(_varType_);
+        setType(_type_);
 
-        setVarExp(_varExp_);
-
-        setNewline(_newline_);
+        setExpression(_expression_);
 
     }
 
@@ -40,9 +35,8 @@ public final class AVarDecl extends PVarDecl
     {
         return new AVarDecl(
             cloneNode(this._identifier_),
-            cloneNode(this._varType_),
-            cloneNode(this._varExp_),
-            cloneList(this._newline_));
+            cloneNode(this._type_),
+            cloneNode(this._expression_));
     }
 
     @Override
@@ -76,16 +70,16 @@ public final class AVarDecl extends PVarDecl
         this._identifier_ = node;
     }
 
-    public PVarType getVarType()
+    public PType getType()
     {
-        return this._varType_;
+        return this._type_;
     }
 
-    public void setVarType(PVarType node)
+    public void setType(PType node)
     {
-        if(this._varType_ != null)
+        if(this._type_ != null)
         {
-            this._varType_.parent(null);
+            this._type_.parent(null);
         }
 
         if(node != null)
@@ -98,19 +92,19 @@ public final class AVarDecl extends PVarDecl
             node.parent(this);
         }
 
-        this._varType_ = node;
+        this._type_ = node;
     }
 
-    public PVarExp getVarExp()
+    public PExpression getExpression()
     {
-        return this._varExp_;
+        return this._expression_;
     }
 
-    public void setVarExp(PVarExp node)
+    public void setExpression(PExpression node)
     {
-        if(this._varExp_ != null)
+        if(this._expression_ != null)
         {
-            this._varExp_.parent(null);
+            this._expression_.parent(null);
         }
 
         if(node != null)
@@ -123,33 +117,7 @@ public final class AVarDecl extends PVarDecl
             node.parent(this);
         }
 
-        this._varExp_ = node;
-    }
-
-    public LinkedList<TNewline> getNewline()
-    {
-        return this._newline_;
-    }
-
-    public void setNewline(List<?> list)
-    {
-        for(TNewline e : this._newline_)
-        {
-            e.parent(null);
-        }
-        this._newline_.clear();
-
-        for(Object obj_e : list)
-        {
-            TNewline e = (TNewline) obj_e;
-            if(e.parent() != null)
-            {
-                e.parent().removeChild(e);
-            }
-
-            e.parent(this);
-            this._newline_.add(e);
-        }
+        this._expression_ = node;
     }
 
     @Override
@@ -157,9 +125,8 @@ public final class AVarDecl extends PVarDecl
     {
         return ""
             + toString(this._identifier_)
-            + toString(this._varType_)
-            + toString(this._varExp_)
-            + toString(this._newline_);
+            + toString(this._type_)
+            + toString(this._expression_);
     }
 
     @Override
@@ -172,20 +139,15 @@ public final class AVarDecl extends PVarDecl
             return;
         }
 
-        if(this._varType_ == child)
+        if(this._type_ == child)
         {
-            this._varType_ = null;
+            this._type_ = null;
             return;
         }
 
-        if(this._varExp_ == child)
+        if(this._expression_ == child)
         {
-            this._varExp_ = null;
-            return;
-        }
-
-        if(this._newline_.remove(child))
-        {
+            this._expression_ = null;
             return;
         }
 
@@ -202,34 +164,16 @@ public final class AVarDecl extends PVarDecl
             return;
         }
 
-        if(this._varType_ == oldChild)
+        if(this._type_ == oldChild)
         {
-            setVarType((PVarType) newChild);
+            setType((PType) newChild);
             return;
         }
 
-        if(this._varExp_ == oldChild)
+        if(this._expression_ == oldChild)
         {
-            setVarExp((PVarExp) newChild);
+            setExpression((PExpression) newChild);
             return;
-        }
-
-        for(ListIterator<TNewline> i = this._newline_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set((TNewline) newChild);
-                    newChild.parent(this);
-                    oldChild.parent(null);
-                    return;
-                }
-
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
         }
 
         throw new RuntimeException("Not a child.");

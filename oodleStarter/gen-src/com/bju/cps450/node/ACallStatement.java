@@ -2,12 +2,15 @@
 
 package com.bju.cps450.node;
 
+import java.util.*;
 import com.bju.cps450.analysis.*;
 
 @SuppressWarnings("nls")
 public final class ACallStatement extends PStatement
 {
-    private PCallStmt _callStmt_;
+    private PExpression _caller_;
+    private TIdentifier _identifier_;
+    private final LinkedList<PExpression> _args_ = new LinkedList<PExpression>();
 
     public ACallStatement()
     {
@@ -15,10 +18,16 @@ public final class ACallStatement extends PStatement
     }
 
     public ACallStatement(
-        @SuppressWarnings("hiding") PCallStmt _callStmt_)
+        @SuppressWarnings("hiding") PExpression _caller_,
+        @SuppressWarnings("hiding") TIdentifier _identifier_,
+        @SuppressWarnings("hiding") List<?> _args_)
     {
         // Constructor
-        setCallStmt(_callStmt_);
+        setCaller(_caller_);
+
+        setIdentifier(_identifier_);
+
+        setArgs(_args_);
 
     }
 
@@ -26,7 +35,9 @@ public final class ACallStatement extends PStatement
     public Object clone()
     {
         return new ACallStatement(
-            cloneNode(this._callStmt_));
+            cloneNode(this._caller_),
+            cloneNode(this._identifier_),
+            cloneList(this._args_));
     }
 
     @Override
@@ -35,16 +46,16 @@ public final class ACallStatement extends PStatement
         ((Analysis) sw).caseACallStatement(this);
     }
 
-    public PCallStmt getCallStmt()
+    public PExpression getCaller()
     {
-        return this._callStmt_;
+        return this._caller_;
     }
 
-    public void setCallStmt(PCallStmt node)
+    public void setCaller(PExpression node)
     {
-        if(this._callStmt_ != null)
+        if(this._caller_ != null)
         {
-            this._callStmt_.parent(null);
+            this._caller_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +68,87 @@ public final class ACallStatement extends PStatement
             node.parent(this);
         }
 
-        this._callStmt_ = node;
+        this._caller_ = node;
+    }
+
+    public TIdentifier getIdentifier()
+    {
+        return this._identifier_;
+    }
+
+    public void setIdentifier(TIdentifier node)
+    {
+        if(this._identifier_ != null)
+        {
+            this._identifier_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._identifier_ = node;
+    }
+
+    public LinkedList<PExpression> getArgs()
+    {
+        return this._args_;
+    }
+
+    public void setArgs(List<?> list)
+    {
+        for(PExpression e : this._args_)
+        {
+            e.parent(null);
+        }
+        this._args_.clear();
+
+        for(Object obj_e : list)
+        {
+            PExpression e = (PExpression) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._args_.add(e);
+        }
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._callStmt_);
+            + toString(this._caller_)
+            + toString(this._identifier_)
+            + toString(this._args_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._callStmt_ == child)
+        if(this._caller_ == child)
         {
-            this._callStmt_ = null;
+            this._caller_ = null;
+            return;
+        }
+
+        if(this._identifier_ == child)
+        {
+            this._identifier_ = null;
+            return;
+        }
+
+        if(this._args_.remove(child))
+        {
             return;
         }
 
@@ -84,10 +159,34 @@ public final class ACallStatement extends PStatement
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._callStmt_ == oldChild)
+        if(this._caller_ == oldChild)
         {
-            setCallStmt((PCallStmt) newChild);
+            setCaller((PExpression) newChild);
             return;
+        }
+
+        if(this._identifier_ == oldChild)
+        {
+            setIdentifier((TIdentifier) newChild);
+            return;
+        }
+
+        for(ListIterator<PExpression> i = this._args_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PExpression) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

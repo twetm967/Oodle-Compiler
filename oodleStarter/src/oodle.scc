@@ -92,121 +92,192 @@ Ignored Tokens
 
 Productions
     //start production: <start> :=	[ <cr> ] <class> { <cr> <class> } [ <cr> ]
-  start = [left]:T.newline* [init]:class inner_class* [right]:T.newline*;
+  start {-> start}      = [left]:T.newline* [init]:class_p inner_class* [right]:T.newline*
+                            {-> New start([init.class_decl, inner_class.class_decl])};
 
-  class = T.class_key [left]:T.identifier inherits_from? T.is T.newline+ var_decl* method_decl* T.end [right]:T.identifier;
 
-  var_decl = T.identifier var_type? var_exp? T.newline+;
+  class_p {-> class_decl} = T.class_key [name]:T.identifier inherits_from? T.is T.newline+ var_decl* method_decl* T.end [right]:T.identifier
+                            {-> New class_decl(name, inherits_from, [var_decl], [method_decl], right)} ;
 
-  method_decl = method_header method_middle method_end;
+  var_decl {-> var_decl} = T.identifier var_type? var_exp? T.newline+
+                            {-> New var_decl( identifier, var_type.type, var_exp.expression)};
 
-  argument_decl_list = arg_list_helper* argument_decl;
+  method_decl {-> method_decl}   = [sid]:T.identifier T.lparen argument_decl_list? T.rparen var_type? T.is [first]:T.newline+ var_decl*
+                            T.begin [second]:T.newline+ statement_list
+                            T.end [last]:T.identifier [third]:T.newline+
+                            {-> New method_decl(sid, [argument_decl_list.arg], var_type.type, [var_decl], [statement_list.statement],last)};
 
-  argument_decl = T.identifier T.colon type;
 
-  type = {int}       T.int
-       | {string}    T.string
-       | {boolean}   T.boolean
-       | {id}        T.identifier
-       | {array}     type T.lbrace expression? T.rbrace;
+  argument_decl_list {-> arg*}    = arg_list_helper* argument_decl {-> [arg_list_helper.arg, argument_decl.arg]};
 
-  statement_list = statement_list_helper*;
+  argument_decl {->arg}       = T.identifier T.colon type { -> New arg(identifier, type)};
 
-  statement = {asgn} assignment_stmt
-        |{if}   if_stmt
-        |{loop}   loop_stmt
-        |{call}   call_stmt;
+  type {-> type}        = {int}       T.int             {-> New type.int(int)}
+                        | {string}    T.string          {-> New type.string(string)}
+                        | {boolean}   T.boolean         {-> New type.boolean(boolean)}
+                        | {id}        T.identifier      {-> New type.id(identifier)}
+                        | {array}     type T.lbrace expression? T.rbrace
+                                                        {-> New type.array(type, expression)};
 
-  assignment_stmt = T.identifier expression_helper* T.assignment expression;
+  statement_list {->statement*}       = statement_list_helper* {-> [statement_list_helper.statement]};
 
-  if_stmt = [left]:T.if expression T.then T.newline+ statement_list if_else? T.end [right]:T.if;
+  statement {->statement}   = {asgn} T.identifier expression_helper* T.assignment expression
+                                    {-> New statement.asgn(identifier, [expression_helper.expression], expression)}
+                            |{if}   [left]:T.if expression T.then T.newline+ statement_list if_else? T.end [right]:T.if
+                                    {-> New statement.if(expression, [statement_list.statement], [if_else.statement])}
+                            |{loop}   [left]:T.loop T.while expression T.newline+ statement_list T.end [right]:T.loop
+                                    {-> New statement.loop(expression, [statement_list.statement])}
+                            |{call}   call_helper? T.identifier T.lparen expression_list? T.rparen
+                                    {-> New statement.call(call_helper.expression, identifier, [expression_list.expression])};
 
-  loop_stmt = [left]:T.loop T.while expression T.newline+ statement_list T.end [right]:T.loop;
 
-  call_stmt = call_helper? T.identifier T.lparen expression_list? T.rparen;
+  expression_list {->expression*}        = expression_list_helper* expression {-> [expression_list_helper.expression, expression]};
 
-  expression_list = expression_list_helper* expression;
+  expression {-> expression}            = expression_lvl6 {->expression_lvl6.expression};
 
-  expression = expression_lvl6;
+  expression_lvl6 {-> expression}       = {or}   expression_lvl6 T.or expression_lvl5
+                                                {-> New expression.or(expression_lvl6.expression, expression_lvl5.expression)}
+                                        | {pass} expression_lvl5 {-> expression_lvl5.expression};
 
-  expression_lvl6 = {or}   expression_lvl6 T.or expression_lvl5
-                    | {pass} expression_lvl5;
+  expression_lvl5 {-> expression}       = {and}  expression_lvl5 T.and expression_lvl4
+                                                {-> New expression.and(expression_lvl5.expression, expression_lvl4.expression)}
+                                        | {pass} expression_lvl4 {-> expression_lvl4.expression};
 
-  expression_lvl5 = {and}  expression_lvl5 T.and expression_lvl4
-                    | {pass} expression_lvl4;
+  expression_lvl4  {-> expression}      = {eq}   [left]:expression_lvlc T.equal [right]:expression_lvlc
+                                                {-> New expression.eq(left.expression, right.expression)}
+                                        | {gt}    [left]:expression_lvlc T.greater_eq [right]:expression_lvlc
+                                                {-> New expression.gt(left.expression, right.expression)}
+                                        | {gte}   [left]:expression_lvlc T.greater_than [right]:expression_lvlc
+                                                {-> New expression.gte(left.expression, right.expression)}
+                                        | {pass} expression_lvlc {-> expression_lvlc.expression};
 
-  expression_lvl4 = {eq}   [left]:expression_lvlc T.equal [right]:expression_lvlc
-                    | {gt}    [left]:expression_lvlc T.greater_eq [right]:expression_lvlc
-                    | {gte}   [left]:expression_lvlc T.greater_than [right]:expression_lvlc
-                    | {pass} expression_lvlc;
+  expression_lvlc {-> expression}       = {concat}  expression_lvlc T.strconcat expression_lvl3
+                                                {-> New expression.concat(expression_lvlc.expression, expression_lvl3.expression)}
+                                        |{pass}   expression_lvl3 {-> expression_lvl3.expression};
 
-  expression_lvlc = {concat}  expression_lvlc T.strconcat expression_lvl3
-                  |{pass}   expression_lvl3;
+  expression_lvl3 {-> expression}       = {add}   expression_lvl3 T.addition expression_lvl2
+                                                {-> New expression.add(expression_lvl3.expression, expression_lvl2.expression)}
+                                        | {sub}   expression_lvl3 T.subtraction expression_lvl2
+                                                {-> New expression.sub(expression_lvl3.expression, expression_lvl2.expression)}
+                                        | {pass}  expression_lvl2 {-> expression_lvl2.expression};
 
-  expression_lvl3 = {add}   expression_lvl3 T.addition expression_lvl2
-                  | {sub}   expression_lvl3 T.subtraction expression_lvl2
-                  | {pass}  expression_lvl2;
+  expression_lvl2 {-> expression}       = {mul}   expression_lvl2 T.multiplication expression_lvl1
+                                                {-> New expression.mul(expression_lvl2.expression, expression_lvl1.expression)}
+                                        | {div}   expression_lvl2 T.division expression_lvl1
+                                                {-> New expression.div(expression_lvl2.expression, expression_lvl1.expression)}
+                                        | {pass}  expression_lvl1 {-> expression_lvl1.expression};
 
-  expression_lvl2 = {mul}   expression_lvl2 T.multiplication expression_lvl1
-                  | {div}   expression_lvl2 T.division expression_lvl1
-                  | {pass}  expression_lvl1;
+  expression_lvl1 {-> expression}       = {not}   T.not expression_lvl1
+                                                {-> New expression.not(expression_lvl1.expression)}
+                                        | {inc}   T.addition expression_lvl1
+                                                {-> New expression.inc(expression_lvl1.expression)}
+                                        | {neg}   T.subtraction expression_lvl1
+                                                {-> New expression.neg(expression_lvl1.expression)}
+                                        | {pass}  expression_lvl0 {-> expression_lvl0.expression};
 
-  expression_lvl1 = {not}   T.not expression_lvl1
-                  | {add}   T.addition expression_lvl1
-                  | {neg}   T.subtraction expression_lvl1
-                  | {pass}  expression_lvl0;
-
-  expression_lvl0 = {identifier}  T.identifier
-                  | {string}      T.str_start T.str_iteral
-                  | {int}         T.int_literal
-                  | {true}        T.true
-                  | {false}       T.false
-                  | {new_obj}     T.new type
-                  | {me}          T.me
-                  | {expr}        T.lparen expression T.rparen
-                  | {mcall}       call_helper? T.identifier T.lparen expression_list? T.rparen
-                  | {array}       T.identifier expression_helper+;
+  expression_lvl0 {-> expression}       = {identifier}  T.identifier                    {->New expression.identifier(identifier)}
+                                        | {string}      T.str_start T.str_iteral        {->New expression.string(str_start, str_iteral)}
+                                        | {int}         T.int_literal                   {->New expression.int(int_literal)}
+                                        | {true}        T.true                          {->New expression.true(true)}
+                                        | {false}       T.false                         {->New expression.false(false)}
+                                        | {new_obj}     T.new type                      {->New expression.new_obj(type)}
+                                        | {me}          T.me                            {->New expression.me(me)}
+                                        | {expr}        T.lparen expression T.rparen    {->New expression.expr(expression)}
+                                        | {mcall}       call_helper? T.identifier T.lparen expression_list? T.rparen
+                                                                                        {-> New expression.mcall(call_helper.expression, identifier, [expression_list.expression])}
+                                        | {array}       T.identifier expression_helper+
+                                                                                        {-> New expression.array(identifier, [expression_helper.expression])};
 
 
 
   //helpers
-  //method header: "id ( [ <argument_decl_list> ] ) [ : <type> ] is <cr> { <var_decl> }"
-  method_header = T.identifier T.lparen argument_decl_list? T.rparen var_type? T.is T.newline+ var_decl* ;
-
-  //method middle: "begin <cr> <statement_list>"
-  method_middle = T.begin T.newline+ statement_list;
-
-  //method end: "end id <cr>"
-  method_end = T.end T.identifier T.newline+;
 
   //beginning of expression list: "{ <expression> , }"
-  expression_list_helper = expression T.comma;
+  expression_list_helper {->expression} = expression T.comma {-> expression};
 
   //expression call helper: "[ <expression> ]"
-  expression_helper = T.lbrace expression T.rbrace;
+  expression_helper {->expression}    = T.lbrace expression T.rbrace {->expression};
 
   //expression dot: "<expression> ."
-  call_helper = expression_lvl0 T.dot;
+  call_helper {->expression}   = expression_lvl0 T.dot {-> expression_lvl0.expression};
 
   //if /else/ helper: "else <cr> <statement_list>"
-  if_else = T.else T.newline+ statement_list;
+  if_else{->statement*} = T.else T.newline+ statement_list {-> [statement_list.statement]};
 
   //statement list helper: "<statement> <cr>"
-  statement_list_helper = statement T.newline+;
+  statement_list_helper {-> statement} = statement T.newline+ {-> statement};
 
   //type declaration: ": <type>"
-  var_type = T.colon type;
+  var_type {-> type} = T.colon type {-> type};
 
   //var assignment: ":= <expression>"
-  var_exp = T.assignment expression;
+  var_exp {-> expression} = T.assignment expression {->expression};
 
   //argument declaration: "id : <type> ;"
-  arg_list_helper = argument_decl T.semicolon;
+  arg_list_helper {->arg} = argument_decl T.semicolon {->argument_decl.arg};
 
   //inheritance: "inherits from id"
-  inherits_from = T.inherits T.from T.identifier;
+  inherits_from {-> inherits_from} = T.inherits T.from T.identifier {-> New inherits_from(identifier)};
 
   //inner class: " { <cr> <class> }"
-  inner_class = T.newline+ class;
+  inner_class {-> class_decl} = T.newline+ class_p {-> class_p.class_decl};
+
+
+  Abstract Syntax Tree
+    start                       = class_decl*;
+
+    class_decl                  = [start]:identifier inherits_from? var_decl* method_decl* [end]:identifier;
+
+    inherits_from               = identifier;
+
+    var_decl                    = identifier type? expression?;
+
+    method_decl                 = [start]:identifier arg* type? var_decl* statement* [end]:identifier;
+
+    arg                         = identifier type;
+
+    method                      = type identifier;
+
+    type                        = {int} int
+                                | {string} string
+                                | {boolean} boolean
+                                | {id} identifier
+                                | {array} type expression?;
+
+    statement                   = {asgn} identifier [first]:expression* [second]:expression
+                                | {if} [cond]:expression [true]:statement* [false]:statement*
+                                | {loop} [cond]:expression statement*
+                                | {call} [caller]:expression? identifier [args]:expression*;
+
+
+    expression                  = {or} [lhs]:expression [rhs]:expression
+                                | {and} [lhs]:expression [rhs]:expression
+                                | {eq} [lhs]:expression [rhs]:expression
+                                | {gt} [lhs]:expression [rhs]:expression
+                                | {gte} [lhs]:expression [rhs]:expression
+                                | {concat} [lhs]:expression [rhs]:expression
+                                | {add} [lhs]:expression [rhs]:expression
+                                | {sub} [lhs]:expression [rhs]:expression
+                                | {mul} [lhs]:expression [rhs]:expression
+                                | {div} [lhs]:expression [rhs]:expression
+                                | {not} [rhs]:expression
+                                | {inc} [rhs]:expression
+                                | {neg} [rhs]:expression
+                                | {identifier}  identifier
+                                | {string} str_start str_iteral
+                                | {int} int_literal
+                                | {true} true
+                                | {false} false
+                                | {new_obj} type
+                                | {me} me
+                                | {expr} expression
+                                | {mcall} [start]:expression? [method]:identifier [args]:expression*
+                                | {array} identifier expression*;
+
+
+
+
+
+
 
   

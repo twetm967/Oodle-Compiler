@@ -2,12 +2,15 @@
 
 package com.bju.cps450.node;
 
+import java.util.*;
 import com.bju.cps450.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AIfStatement extends PStatement
 {
-    private PIfStmt _ifStmt_;
+    private PExpression _cond_;
+    private final LinkedList<PStatement> _true_ = new LinkedList<PStatement>();
+    private final LinkedList<PStatement> _false_ = new LinkedList<PStatement>();
 
     public AIfStatement()
     {
@@ -15,10 +18,16 @@ public final class AIfStatement extends PStatement
     }
 
     public AIfStatement(
-        @SuppressWarnings("hiding") PIfStmt _ifStmt_)
+        @SuppressWarnings("hiding") PExpression _cond_,
+        @SuppressWarnings("hiding") List<?> _true_,
+        @SuppressWarnings("hiding") List<?> _false_)
     {
         // Constructor
-        setIfStmt(_ifStmt_);
+        setCond(_cond_);
+
+        setTrue(_true_);
+
+        setFalse(_false_);
 
     }
 
@@ -26,7 +35,9 @@ public final class AIfStatement extends PStatement
     public Object clone()
     {
         return new AIfStatement(
-            cloneNode(this._ifStmt_));
+            cloneNode(this._cond_),
+            cloneList(this._true_),
+            cloneList(this._false_));
     }
 
     @Override
@@ -35,16 +46,16 @@ public final class AIfStatement extends PStatement
         ((Analysis) sw).caseAIfStatement(this);
     }
 
-    public PIfStmt getIfStmt()
+    public PExpression getCond()
     {
-        return this._ifStmt_;
+        return this._cond_;
     }
 
-    public void setIfStmt(PIfStmt node)
+    public void setCond(PExpression node)
     {
-        if(this._ifStmt_ != null)
+        if(this._cond_ != null)
         {
-            this._ifStmt_.parent(null);
+            this._cond_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +68,87 @@ public final class AIfStatement extends PStatement
             node.parent(this);
         }
 
-        this._ifStmt_ = node;
+        this._cond_ = node;
+    }
+
+    public LinkedList<PStatement> getTrue()
+    {
+        return this._true_;
+    }
+
+    public void setTrue(List<?> list)
+    {
+        for(PStatement e : this._true_)
+        {
+            e.parent(null);
+        }
+        this._true_.clear();
+
+        for(Object obj_e : list)
+        {
+            PStatement e = (PStatement) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._true_.add(e);
+        }
+    }
+
+    public LinkedList<PStatement> getFalse()
+    {
+        return this._false_;
+    }
+
+    public void setFalse(List<?> list)
+    {
+        for(PStatement e : this._false_)
+        {
+            e.parent(null);
+        }
+        this._false_.clear();
+
+        for(Object obj_e : list)
+        {
+            PStatement e = (PStatement) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._false_.add(e);
+        }
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._ifStmt_);
+            + toString(this._cond_)
+            + toString(this._true_)
+            + toString(this._false_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._ifStmt_ == child)
+        if(this._cond_ == child)
         {
-            this._ifStmt_ = null;
+            this._cond_ = null;
+            return;
+        }
+
+        if(this._true_.remove(child))
+        {
+            return;
+        }
+
+        if(this._false_.remove(child))
+        {
             return;
         }
 
@@ -84,10 +159,46 @@ public final class AIfStatement extends PStatement
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._ifStmt_ == oldChild)
+        if(this._cond_ == oldChild)
         {
-            setIfStmt((PIfStmt) newChild);
+            setCond((PExpression) newChild);
             return;
+        }
+
+        for(ListIterator<PStatement> i = this._true_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PStatement) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
+        }
+
+        for(ListIterator<PStatement> i = this._false_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PStatement) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

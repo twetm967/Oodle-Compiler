@@ -8,10 +8,7 @@ import com.bju.cps450.analysis.*;
 @SuppressWarnings("nls")
 public final class AStart extends PStart
 {
-    private final LinkedList<TNewline> _left_ = new LinkedList<TNewline>();
-    private PClass _init_;
-    private final LinkedList<PInnerClass> _innerClass_ = new LinkedList<PInnerClass>();
-    private final LinkedList<TNewline> _right_ = new LinkedList<TNewline>();
+    private final LinkedList<PClassDecl> _classDecl_ = new LinkedList<PClassDecl>();
 
     public AStart()
     {
@@ -19,19 +16,10 @@ public final class AStart extends PStart
     }
 
     public AStart(
-        @SuppressWarnings("hiding") List<?> _left_,
-        @SuppressWarnings("hiding") PClass _init_,
-        @SuppressWarnings("hiding") List<?> _innerClass_,
-        @SuppressWarnings("hiding") List<?> _right_)
+        @SuppressWarnings("hiding") List<?> _classDecl_)
     {
         // Constructor
-        setLeft(_left_);
-
-        setInit(_init_);
-
-        setInnerClass(_innerClass_);
-
-        setRight(_right_);
+        setClassDecl(_classDecl_);
 
     }
 
@@ -39,10 +27,7 @@ public final class AStart extends PStart
     public Object clone()
     {
         return new AStart(
-            cloneList(this._left_),
-            cloneNode(this._init_),
-            cloneList(this._innerClass_),
-            cloneList(this._right_));
+            cloneList(this._classDecl_));
     }
 
     @Override
@@ -51,106 +36,29 @@ public final class AStart extends PStart
         ((Analysis) sw).caseAStart(this);
     }
 
-    public LinkedList<TNewline> getLeft()
+    public LinkedList<PClassDecl> getClassDecl()
     {
-        return this._left_;
+        return this._classDecl_;
     }
 
-    public void setLeft(List<?> list)
+    public void setClassDecl(List<?> list)
     {
-        for(TNewline e : this._left_)
+        for(PClassDecl e : this._classDecl_)
         {
             e.parent(null);
         }
-        this._left_.clear();
+        this._classDecl_.clear();
 
         for(Object obj_e : list)
         {
-            TNewline e = (TNewline) obj_e;
+            PClassDecl e = (PClassDecl) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
             }
 
             e.parent(this);
-            this._left_.add(e);
-        }
-    }
-
-    public PClass getInit()
-    {
-        return this._init_;
-    }
-
-    public void setInit(PClass node)
-    {
-        if(this._init_ != null)
-        {
-            this._init_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._init_ = node;
-    }
-
-    public LinkedList<PInnerClass> getInnerClass()
-    {
-        return this._innerClass_;
-    }
-
-    public void setInnerClass(List<?> list)
-    {
-        for(PInnerClass e : this._innerClass_)
-        {
-            e.parent(null);
-        }
-        this._innerClass_.clear();
-
-        for(Object obj_e : list)
-        {
-            PInnerClass e = (PInnerClass) obj_e;
-            if(e.parent() != null)
-            {
-                e.parent().removeChild(e);
-            }
-
-            e.parent(this);
-            this._innerClass_.add(e);
-        }
-    }
-
-    public LinkedList<TNewline> getRight()
-    {
-        return this._right_;
-    }
-
-    public void setRight(List<?> list)
-    {
-        for(TNewline e : this._right_)
-        {
-            e.parent(null);
-        }
-        this._right_.clear();
-
-        for(Object obj_e : list)
-        {
-            TNewline e = (TNewline) obj_e;
-            if(e.parent() != null)
-            {
-                e.parent().removeChild(e);
-            }
-
-            e.parent(this);
-            this._right_.add(e);
+            this._classDecl_.add(e);
         }
     }
 
@@ -158,33 +66,14 @@ public final class AStart extends PStart
     public String toString()
     {
         return ""
-            + toString(this._left_)
-            + toString(this._init_)
-            + toString(this._innerClass_)
-            + toString(this._right_);
+            + toString(this._classDecl_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._left_.remove(child))
-        {
-            return;
-        }
-
-        if(this._init_ == child)
-        {
-            this._init_ = null;
-            return;
-        }
-
-        if(this._innerClass_.remove(child))
-        {
-            return;
-        }
-
-        if(this._right_.remove(child))
+        if(this._classDecl_.remove(child))
         {
             return;
         }
@@ -196,55 +85,13 @@ public final class AStart extends PStart
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        for(ListIterator<TNewline> i = this._left_.listIterator(); i.hasNext();)
+        for(ListIterator<PClassDecl> i = this._classDecl_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((TNewline) newChild);
-                    newChild.parent(this);
-                    oldChild.parent(null);
-                    return;
-                }
-
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
-        }
-
-        if(this._init_ == oldChild)
-        {
-            setInit((PClass) newChild);
-            return;
-        }
-
-        for(ListIterator<PInnerClass> i = this._innerClass_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set((PInnerClass) newChild);
-                    newChild.parent(this);
-                    oldChild.parent(null);
-                    return;
-                }
-
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
-        }
-
-        for(ListIterator<TNewline> i = this._right_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set((TNewline) newChild);
+                    i.set((PClassDecl) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;

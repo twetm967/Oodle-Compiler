@@ -2,12 +2,14 @@
 
 package com.bju.cps450.node;
 
+import java.util.*;
 import com.bju.cps450.analysis.*;
 
 @SuppressWarnings("nls")
 public final class ALoopStatement extends PStatement
 {
-    private PLoopStmt _loopStmt_;
+    private PExpression _cond_;
+    private final LinkedList<PStatement> _statement_ = new LinkedList<PStatement>();
 
     public ALoopStatement()
     {
@@ -15,10 +17,13 @@ public final class ALoopStatement extends PStatement
     }
 
     public ALoopStatement(
-        @SuppressWarnings("hiding") PLoopStmt _loopStmt_)
+        @SuppressWarnings("hiding") PExpression _cond_,
+        @SuppressWarnings("hiding") List<?> _statement_)
     {
         // Constructor
-        setLoopStmt(_loopStmt_);
+        setCond(_cond_);
+
+        setStatement(_statement_);
 
     }
 
@@ -26,7 +31,8 @@ public final class ALoopStatement extends PStatement
     public Object clone()
     {
         return new ALoopStatement(
-            cloneNode(this._loopStmt_));
+            cloneNode(this._cond_),
+            cloneList(this._statement_));
     }
 
     @Override
@@ -35,16 +41,16 @@ public final class ALoopStatement extends PStatement
         ((Analysis) sw).caseALoopStatement(this);
     }
 
-    public PLoopStmt getLoopStmt()
+    public PExpression getCond()
     {
-        return this._loopStmt_;
+        return this._cond_;
     }
 
-    public void setLoopStmt(PLoopStmt node)
+    public void setCond(PExpression node)
     {
-        if(this._loopStmt_ != null)
+        if(this._cond_ != null)
         {
-            this._loopStmt_.parent(null);
+            this._cond_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +63,55 @@ public final class ALoopStatement extends PStatement
             node.parent(this);
         }
 
-        this._loopStmt_ = node;
+        this._cond_ = node;
+    }
+
+    public LinkedList<PStatement> getStatement()
+    {
+        return this._statement_;
+    }
+
+    public void setStatement(List<?> list)
+    {
+        for(PStatement e : this._statement_)
+        {
+            e.parent(null);
+        }
+        this._statement_.clear();
+
+        for(Object obj_e : list)
+        {
+            PStatement e = (PStatement) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._statement_.add(e);
+        }
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._loopStmt_);
+            + toString(this._cond_)
+            + toString(this._statement_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._loopStmt_ == child)
+        if(this._cond_ == child)
         {
-            this._loopStmt_ = null;
+            this._cond_ = null;
+            return;
+        }
+
+        if(this._statement_.remove(child))
+        {
             return;
         }
 
@@ -84,10 +122,28 @@ public final class ALoopStatement extends PStatement
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._loopStmt_ == oldChild)
+        if(this._cond_ == oldChild)
         {
-            setLoopStmt((PLoopStmt) newChild);
+            setCond((PExpression) newChild);
             return;
+        }
+
+        for(ListIterator<PStatement> i = this._statement_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PStatement) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

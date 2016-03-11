@@ -7,9 +7,8 @@ import com.bju.cps450.analysis.*;
 @SuppressWarnings("nls")
 public final class AArrayType extends PType
 {
-    private TLbrace _lbrace_;
+    private PType _type_;
     private PExpression _expression_;
-    private TRbrace _rbrace_;
 
     public AArrayType()
     {
@@ -17,16 +16,13 @@ public final class AArrayType extends PType
     }
 
     public AArrayType(
-        @SuppressWarnings("hiding") TLbrace _lbrace_,
-        @SuppressWarnings("hiding") PExpression _expression_,
-        @SuppressWarnings("hiding") TRbrace _rbrace_)
+        @SuppressWarnings("hiding") PType _type_,
+        @SuppressWarnings("hiding") PExpression _expression_)
     {
         // Constructor
-        setLbrace(_lbrace_);
+        setType(_type_);
 
         setExpression(_expression_);
-
-        setRbrace(_rbrace_);
 
     }
 
@@ -34,9 +30,8 @@ public final class AArrayType extends PType
     public Object clone()
     {
         return new AArrayType(
-            cloneNode(this._lbrace_),
-            cloneNode(this._expression_),
-            cloneNode(this._rbrace_));
+            cloneNode(this._type_),
+            cloneNode(this._expression_));
     }
 
     @Override
@@ -45,16 +40,16 @@ public final class AArrayType extends PType
         ((Analysis) sw).caseAArrayType(this);
     }
 
-    public TLbrace getLbrace()
+    public PType getType()
     {
-        return this._lbrace_;
+        return this._type_;
     }
 
-    public void setLbrace(TLbrace node)
+    public void setType(PType node)
     {
-        if(this._lbrace_ != null)
+        if(this._type_ != null)
         {
-            this._lbrace_.parent(null);
+            this._type_.parent(null);
         }
 
         if(node != null)
@@ -67,7 +62,7 @@ public final class AArrayType extends PType
             node.parent(this);
         }
 
-        this._lbrace_ = node;
+        this._type_ = node;
     }
 
     public PExpression getExpression()
@@ -95,59 +90,27 @@ public final class AArrayType extends PType
         this._expression_ = node;
     }
 
-    public TRbrace getRbrace()
-    {
-        return this._rbrace_;
-    }
-
-    public void setRbrace(TRbrace node)
-    {
-        if(this._rbrace_ != null)
-        {
-            this._rbrace_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._rbrace_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._lbrace_)
-            + toString(this._expression_)
-            + toString(this._rbrace_);
+            + toString(this._type_)
+            + toString(this._expression_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._lbrace_ == child)
+        if(this._type_ == child)
         {
-            this._lbrace_ = null;
+            this._type_ = null;
             return;
         }
 
         if(this._expression_ == child)
         {
             this._expression_ = null;
-            return;
-        }
-
-        if(this._rbrace_ == child)
-        {
-            this._rbrace_ = null;
             return;
         }
 
@@ -158,21 +121,15 @@ public final class AArrayType extends PType
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._lbrace_ == oldChild)
+        if(this._type_ == oldChild)
         {
-            setLbrace((TLbrace) newChild);
+            setType((PType) newChild);
             return;
         }
 
         if(this._expression_ == oldChild)
         {
             setExpression((PExpression) newChild);
-            return;
-        }
-
-        if(this._rbrace_ == oldChild)
-        {
-            setRbrace((TRbrace) newChild);
             return;
         }
 

@@ -2,12 +2,15 @@
 
 package com.bju.cps450.node;
 
+import java.util.*;
 import com.bju.cps450.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AAsgnStatement extends PStatement
 {
-    private PAssignmentStmt _assignmentStmt_;
+    private TIdentifier _identifier_;
+    private final LinkedList<PExpression> _first_ = new LinkedList<PExpression>();
+    private PExpression _second_;
 
     public AAsgnStatement()
     {
@@ -15,10 +18,16 @@ public final class AAsgnStatement extends PStatement
     }
 
     public AAsgnStatement(
-        @SuppressWarnings("hiding") PAssignmentStmt _assignmentStmt_)
+        @SuppressWarnings("hiding") TIdentifier _identifier_,
+        @SuppressWarnings("hiding") List<?> _first_,
+        @SuppressWarnings("hiding") PExpression _second_)
     {
         // Constructor
-        setAssignmentStmt(_assignmentStmt_);
+        setIdentifier(_identifier_);
+
+        setFirst(_first_);
+
+        setSecond(_second_);
 
     }
 
@@ -26,7 +35,9 @@ public final class AAsgnStatement extends PStatement
     public Object clone()
     {
         return new AAsgnStatement(
-            cloneNode(this._assignmentStmt_));
+            cloneNode(this._identifier_),
+            cloneList(this._first_),
+            cloneNode(this._second_));
     }
 
     @Override
@@ -35,16 +46,16 @@ public final class AAsgnStatement extends PStatement
         ((Analysis) sw).caseAAsgnStatement(this);
     }
 
-    public PAssignmentStmt getAssignmentStmt()
+    public TIdentifier getIdentifier()
     {
-        return this._assignmentStmt_;
+        return this._identifier_;
     }
 
-    public void setAssignmentStmt(PAssignmentStmt node)
+    public void setIdentifier(TIdentifier node)
     {
-        if(this._assignmentStmt_ != null)
+        if(this._identifier_ != null)
         {
-            this._assignmentStmt_.parent(null);
+            this._identifier_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +68,87 @@ public final class AAsgnStatement extends PStatement
             node.parent(this);
         }
 
-        this._assignmentStmt_ = node;
+        this._identifier_ = node;
+    }
+
+    public LinkedList<PExpression> getFirst()
+    {
+        return this._first_;
+    }
+
+    public void setFirst(List<?> list)
+    {
+        for(PExpression e : this._first_)
+        {
+            e.parent(null);
+        }
+        this._first_.clear();
+
+        for(Object obj_e : list)
+        {
+            PExpression e = (PExpression) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._first_.add(e);
+        }
+    }
+
+    public PExpression getSecond()
+    {
+        return this._second_;
+    }
+
+    public void setSecond(PExpression node)
+    {
+        if(this._second_ != null)
+        {
+            this._second_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._second_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._assignmentStmt_);
+            + toString(this._identifier_)
+            + toString(this._first_)
+            + toString(this._second_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._assignmentStmt_ == child)
+        if(this._identifier_ == child)
         {
-            this._assignmentStmt_ = null;
+            this._identifier_ = null;
+            return;
+        }
+
+        if(this._first_.remove(child))
+        {
+            return;
+        }
+
+        if(this._second_ == child)
+        {
+            this._second_ = null;
             return;
         }
 
@@ -84,9 +159,33 @@ public final class AAsgnStatement extends PStatement
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._assignmentStmt_ == oldChild)
+        if(this._identifier_ == oldChild)
         {
-            setAssignmentStmt((PAssignmentStmt) newChild);
+            setIdentifier((TIdentifier) newChild);
+            return;
+        }
+
+        for(ListIterator<PExpression> i = this._first_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PExpression) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
+        }
+
+        if(this._second_ == oldChild)
+        {
+            setSecond((PExpression) newChild);
             return;
         }
 

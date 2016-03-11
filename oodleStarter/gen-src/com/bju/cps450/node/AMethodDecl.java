@@ -2,14 +2,18 @@
 
 package com.bju.cps450.node;
 
+import java.util.*;
 import com.bju.cps450.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AMethodDecl extends PMethodDecl
 {
-    private PMethodHeader _methodHeader_;
-    private PMethodMiddle _methodMiddle_;
-    private PMethodEnd _methodEnd_;
+    private TIdentifier _start_;
+    private final LinkedList<PArg> _arg_ = new LinkedList<PArg>();
+    private PType _type_;
+    private final LinkedList<PVarDecl> _varDecl_ = new LinkedList<PVarDecl>();
+    private final LinkedList<PStatement> _statement_ = new LinkedList<PStatement>();
+    private TIdentifier _end_;
 
     public AMethodDecl()
     {
@@ -17,16 +21,25 @@ public final class AMethodDecl extends PMethodDecl
     }
 
     public AMethodDecl(
-        @SuppressWarnings("hiding") PMethodHeader _methodHeader_,
-        @SuppressWarnings("hiding") PMethodMiddle _methodMiddle_,
-        @SuppressWarnings("hiding") PMethodEnd _methodEnd_)
+        @SuppressWarnings("hiding") TIdentifier _start_,
+        @SuppressWarnings("hiding") List<?> _arg_,
+        @SuppressWarnings("hiding") PType _type_,
+        @SuppressWarnings("hiding") List<?> _varDecl_,
+        @SuppressWarnings("hiding") List<?> _statement_,
+        @SuppressWarnings("hiding") TIdentifier _end_)
     {
         // Constructor
-        setMethodHeader(_methodHeader_);
+        setStart(_start_);
 
-        setMethodMiddle(_methodMiddle_);
+        setArg(_arg_);
 
-        setMethodEnd(_methodEnd_);
+        setType(_type_);
+
+        setVarDecl(_varDecl_);
+
+        setStatement(_statement_);
+
+        setEnd(_end_);
 
     }
 
@@ -34,9 +47,12 @@ public final class AMethodDecl extends PMethodDecl
     public Object clone()
     {
         return new AMethodDecl(
-            cloneNode(this._methodHeader_),
-            cloneNode(this._methodMiddle_),
-            cloneNode(this._methodEnd_));
+            cloneNode(this._start_),
+            cloneList(this._arg_),
+            cloneNode(this._type_),
+            cloneList(this._varDecl_),
+            cloneList(this._statement_),
+            cloneNode(this._end_));
     }
 
     @Override
@@ -45,16 +61,16 @@ public final class AMethodDecl extends PMethodDecl
         ((Analysis) sw).caseAMethodDecl(this);
     }
 
-    public PMethodHeader getMethodHeader()
+    public TIdentifier getStart()
     {
-        return this._methodHeader_;
+        return this._start_;
     }
 
-    public void setMethodHeader(PMethodHeader node)
+    public void setStart(TIdentifier node)
     {
-        if(this._methodHeader_ != null)
+        if(this._start_ != null)
         {
-            this._methodHeader_.parent(null);
+            this._start_.parent(null);
         }
 
         if(node != null)
@@ -67,19 +83,45 @@ public final class AMethodDecl extends PMethodDecl
             node.parent(this);
         }
 
-        this._methodHeader_ = node;
+        this._start_ = node;
     }
 
-    public PMethodMiddle getMethodMiddle()
+    public LinkedList<PArg> getArg()
     {
-        return this._methodMiddle_;
+        return this._arg_;
     }
 
-    public void setMethodMiddle(PMethodMiddle node)
+    public void setArg(List<?> list)
     {
-        if(this._methodMiddle_ != null)
+        for(PArg e : this._arg_)
         {
-            this._methodMiddle_.parent(null);
+            e.parent(null);
+        }
+        this._arg_.clear();
+
+        for(Object obj_e : list)
+        {
+            PArg e = (PArg) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._arg_.add(e);
+        }
+    }
+
+    public PType getType()
+    {
+        return this._type_;
+    }
+
+    public void setType(PType node)
+    {
+        if(this._type_ != null)
+        {
+            this._type_.parent(null);
         }
 
         if(node != null)
@@ -92,19 +134,71 @@ public final class AMethodDecl extends PMethodDecl
             node.parent(this);
         }
 
-        this._methodMiddle_ = node;
+        this._type_ = node;
     }
 
-    public PMethodEnd getMethodEnd()
+    public LinkedList<PVarDecl> getVarDecl()
     {
-        return this._methodEnd_;
+        return this._varDecl_;
     }
 
-    public void setMethodEnd(PMethodEnd node)
+    public void setVarDecl(List<?> list)
     {
-        if(this._methodEnd_ != null)
+        for(PVarDecl e : this._varDecl_)
         {
-            this._methodEnd_.parent(null);
+            e.parent(null);
+        }
+        this._varDecl_.clear();
+
+        for(Object obj_e : list)
+        {
+            PVarDecl e = (PVarDecl) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._varDecl_.add(e);
+        }
+    }
+
+    public LinkedList<PStatement> getStatement()
+    {
+        return this._statement_;
+    }
+
+    public void setStatement(List<?> list)
+    {
+        for(PStatement e : this._statement_)
+        {
+            e.parent(null);
+        }
+        this._statement_.clear();
+
+        for(Object obj_e : list)
+        {
+            PStatement e = (PStatement) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._statement_.add(e);
+        }
+    }
+
+    public TIdentifier getEnd()
+    {
+        return this._end_;
+    }
+
+    public void setEnd(TIdentifier node)
+    {
+        if(this._end_ != null)
+        {
+            this._end_.parent(null);
         }
 
         if(node != null)
@@ -117,37 +211,55 @@ public final class AMethodDecl extends PMethodDecl
             node.parent(this);
         }
 
-        this._methodEnd_ = node;
+        this._end_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._methodHeader_)
-            + toString(this._methodMiddle_)
-            + toString(this._methodEnd_);
+            + toString(this._start_)
+            + toString(this._arg_)
+            + toString(this._type_)
+            + toString(this._varDecl_)
+            + toString(this._statement_)
+            + toString(this._end_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._methodHeader_ == child)
+        if(this._start_ == child)
         {
-            this._methodHeader_ = null;
+            this._start_ = null;
             return;
         }
 
-        if(this._methodMiddle_ == child)
+        if(this._arg_.remove(child))
         {
-            this._methodMiddle_ = null;
             return;
         }
 
-        if(this._methodEnd_ == child)
+        if(this._type_ == child)
         {
-            this._methodEnd_ = null;
+            this._type_ = null;
+            return;
+        }
+
+        if(this._varDecl_.remove(child))
+        {
+            return;
+        }
+
+        if(this._statement_.remove(child))
+        {
+            return;
+        }
+
+        if(this._end_ == child)
+        {
+            this._end_ = null;
             return;
         }
 
@@ -158,21 +270,75 @@ public final class AMethodDecl extends PMethodDecl
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._methodHeader_ == oldChild)
+        if(this._start_ == oldChild)
         {
-            setMethodHeader((PMethodHeader) newChild);
+            setStart((TIdentifier) newChild);
             return;
         }
 
-        if(this._methodMiddle_ == oldChild)
+        for(ListIterator<PArg> i = this._arg_.listIterator(); i.hasNext();)
         {
-            setMethodMiddle((PMethodMiddle) newChild);
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PArg) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
+        }
+
+        if(this._type_ == oldChild)
+        {
+            setType((PType) newChild);
             return;
         }
 
-        if(this._methodEnd_ == oldChild)
+        for(ListIterator<PVarDecl> i = this._varDecl_.listIterator(); i.hasNext();)
         {
-            setMethodEnd((PMethodEnd) newChild);
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PVarDecl) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
+        }
+
+        for(ListIterator<PStatement> i = this._statement_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PStatement) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
+        }
+
+        if(this._end_ == oldChild)
+        {
+            setEnd((TIdentifier) newChild);
             return;
         }
 

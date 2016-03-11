@@ -7,8 +7,6 @@ import com.bju.cps450.analysis.*;
 @SuppressWarnings("nls")
 public final class AInheritsFrom extends PInheritsFrom
 {
-    private TInherits _inherits_;
-    private TFrom _from_;
     private TIdentifier _identifier_;
 
     public AInheritsFrom()
@@ -17,15 +15,9 @@ public final class AInheritsFrom extends PInheritsFrom
     }
 
     public AInheritsFrom(
-        @SuppressWarnings("hiding") TInherits _inherits_,
-        @SuppressWarnings("hiding") TFrom _from_,
         @SuppressWarnings("hiding") TIdentifier _identifier_)
     {
         // Constructor
-        setInherits(_inherits_);
-
-        setFrom(_from_);
-
         setIdentifier(_identifier_);
 
     }
@@ -34,8 +26,6 @@ public final class AInheritsFrom extends PInheritsFrom
     public Object clone()
     {
         return new AInheritsFrom(
-            cloneNode(this._inherits_),
-            cloneNode(this._from_),
             cloneNode(this._identifier_));
     }
 
@@ -43,56 +33,6 @@ public final class AInheritsFrom extends PInheritsFrom
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAInheritsFrom(this);
-    }
-
-    public TInherits getInherits()
-    {
-        return this._inherits_;
-    }
-
-    public void setInherits(TInherits node)
-    {
-        if(this._inherits_ != null)
-        {
-            this._inherits_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._inherits_ = node;
-    }
-
-    public TFrom getFrom()
-    {
-        return this._from_;
-    }
-
-    public void setFrom(TFrom node)
-    {
-        if(this._from_ != null)
-        {
-            this._from_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._from_ = node;
     }
 
     public TIdentifier getIdentifier()
@@ -124,8 +64,6 @@ public final class AInheritsFrom extends PInheritsFrom
     public String toString()
     {
         return ""
-            + toString(this._inherits_)
-            + toString(this._from_)
             + toString(this._identifier_);
     }
 
@@ -133,18 +71,6 @@ public final class AInheritsFrom extends PInheritsFrom
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._inherits_ == child)
-        {
-            this._inherits_ = null;
-            return;
-        }
-
-        if(this._from_ == child)
-        {
-            this._from_ = null;
-            return;
-        }
-
         if(this._identifier_ == child)
         {
             this._identifier_ = null;
@@ -158,18 +84,6 @@ public final class AInheritsFrom extends PInheritsFrom
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._inherits_ == oldChild)
-        {
-            setInherits((TInherits) newChild);
-            return;
-        }
-
-        if(this._from_ == oldChild)
-        {
-            setFrom((TFrom) newChild);
-            return;
-        }
-
         if(this._identifier_ == oldChild)
         {
             setIdentifier((TIdentifier) newChild);
