@@ -80,7 +80,7 @@ Tokens
   dot = '.' ;
 
   identifier = (letter | '_') (letter | digit | '_')* ;
-  invalid_identifier = sign? digit (letter | digit | '_')* ;
+  //invalid_identifier = sign? digit (letter | digit | '_')* ;
 
 
 // **********comments***************
@@ -124,7 +124,7 @@ Productions
   statement {->statement}   = {asgn} T.identifier expression_helper* T.assignment expression
                                     {-> New statement.asgn(identifier, [expression_helper.expression], expression)}
                             |{if}   [left]:T.if expression T.then T.newline+ statement_list if_else? T.end [right]:T.if
-                                    {-> New statement.if(expression, [statement_list.statement], [if_else.statement])}
+                                    {-> New statement.if(left, expression, [statement_list.statement], [if_else.statement])}
                             |{loop}   [left]:T.loop T.while expression T.newline+ statement_list T.end [right]:T.loop
                                     {-> New statement.loop(expression, [statement_list.statement])}
                             |{call}   call_helper? T.identifier T.lparen expression_list? T.rparen
@@ -182,7 +182,7 @@ Productions
                                         | {false}       T.false                         {->New expression.false(false)}
                                         | {new_obj}     T.new type                      {->New expression.new_obj(type)}
                                         | {me}          T.me                            {->New expression.me(me)}
-                                        | {expr}        T.lparen expression T.rparen    {->New expression.expr(expression)}
+                                        | {expr}        T.lparen expression T.rparen    {-> expression.expression}
                                         | {mcall}       call_helper? T.identifier T.lparen expression_list? T.rparen
                                                                                         {-> New expression.mcall(call_helper.expression, identifier, [expression_list.expression])}
                                         | {array}       T.identifier expression_helper+
@@ -245,7 +245,7 @@ Productions
                                 | {array} type expression?;
 
     statement                   = {asgn} identifier [first]:expression* [second]:expression
-                                | {if} [cond]:expression [true]:statement* [false]:statement*
+                                | {if} if [cond]:expression [true]:statement* [false]:statement*
                                 | {loop} [cond]:expression statement*
                                 | {call} [caller]:expression? identifier [args]:expression*;
 

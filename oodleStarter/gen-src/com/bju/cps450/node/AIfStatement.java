@@ -8,6 +8,7 @@ import com.bju.cps450.analysis.*;
 @SuppressWarnings("nls")
 public final class AIfStatement extends PStatement
 {
+    private TIf _if_;
     private PExpression _cond_;
     private final LinkedList<PStatement> _true_ = new LinkedList<PStatement>();
     private final LinkedList<PStatement> _false_ = new LinkedList<PStatement>();
@@ -18,11 +19,14 @@ public final class AIfStatement extends PStatement
     }
 
     public AIfStatement(
+        @SuppressWarnings("hiding") TIf _if_,
         @SuppressWarnings("hiding") PExpression _cond_,
         @SuppressWarnings("hiding") List<?> _true_,
         @SuppressWarnings("hiding") List<?> _false_)
     {
         // Constructor
+        setIf(_if_);
+
         setCond(_cond_);
 
         setTrue(_true_);
@@ -35,6 +39,7 @@ public final class AIfStatement extends PStatement
     public Object clone()
     {
         return new AIfStatement(
+            cloneNode(this._if_),
             cloneNode(this._cond_),
             cloneList(this._true_),
             cloneList(this._false_));
@@ -44,6 +49,31 @@ public final class AIfStatement extends PStatement
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAIfStatement(this);
+    }
+
+    public TIf getIf()
+    {
+        return this._if_;
+    }
+
+    public void setIf(TIf node)
+    {
+        if(this._if_ != null)
+        {
+            this._if_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._if_ = node;
     }
 
     public PExpression getCond()
@@ -127,6 +157,7 @@ public final class AIfStatement extends PStatement
     public String toString()
     {
         return ""
+            + toString(this._if_)
             + toString(this._cond_)
             + toString(this._true_)
             + toString(this._false_);
@@ -136,6 +167,12 @@ public final class AIfStatement extends PStatement
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._if_ == child)
+        {
+            this._if_ = null;
+            return;
+        }
+
         if(this._cond_ == child)
         {
             this._cond_ = null;
@@ -159,6 +196,12 @@ public final class AIfStatement extends PStatement
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._if_ == oldChild)
+        {
+            setIf((TIf) newChild);
+            return;
+        }
+
         if(this._cond_ == oldChild)
         {
             setCond((PExpression) newChild);

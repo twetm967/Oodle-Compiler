@@ -3,6 +3,7 @@ package com.bju.cps450;
 
 import com.bju.cps450.analysis.DepthFirstAdapter;
 import com.bju.cps450.application.Application;
+import com.bju.cps450.application.Type;
 import com.bju.cps450.node.*;
 
 /**
@@ -58,20 +59,26 @@ public class OodleSymbolTableBuilder extends DepthFirstAdapter {
     }
 
     @Override
-    public void inAMethod(AMethod node) {
-        lastToken = node.getIdentifier();
+    public void inAMethodDecl(AMethodDecl node) {
+        lastToken = node.getStart();
         try {
-            Application.getSymbolTable().addMethodDeclaration(node.getIdentifier().getText());
+            Application.getSymbolTable().addMethodDeclaration(node.getStart().getText());
         } catch (Exception e) {
             reportError(e.getMessage());
         }
         Application.getSymbolTable().beginScope();
     }
 
+
     @Override
-    public void outAMethod(AMethod node) {
+    public void outAMethodDecl(AMethodDecl node) {
         Application.getSymbolTable().getCurrentMethodDeclaration().setType(Application.getNodeProperties(node.getType()).getType());
+
         try {
+            if(node.getType() != null)
+            {
+                Application.getSymbolTable().addVariableDeclaration(node.getStart().getText(), Application.getNodeProperties(node.getType()).getType());
+            }
             Application.getSymbolTable().endScope();
         } catch (Exception e) {
             reportError(e.getMessage());
@@ -86,5 +93,26 @@ public class OodleSymbolTableBuilder extends DepthFirstAdapter {
         } catch (Exception e) {
             reportError(e.getMessage());
         }
+    }
+
+    @Override
+    public void outAIntType(AIntType node) {
+        Application.getNodeProperties(node).setType(Type.oodInt);
+    }
+
+    @Override
+    public void outABooleanType(ABooleanType node) {
+        Application.getNodeProperties(node).setType(Type.oodBool);
+    }
+
+    @Override
+    public void outAStringType(AStringType node) {
+        Application.getNodeProperties(node).setType(Type.oodString);
+    }
+
+    @Override
+    public void outAIdType(AIdType node)
+    {
+        Application.getNodeProperties(node).setType(new Type(node.getIdentifier().getText()));
     }
 }

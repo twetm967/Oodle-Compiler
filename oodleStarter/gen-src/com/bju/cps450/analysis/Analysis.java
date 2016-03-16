@@ -100,7 +100,6 @@ public interface Analysis extends Switch
     void caseTColon(TColon node);
     void caseTDot(TDot node);
     void caseTIdentifier(TIdentifier node);
-    void caseTInvalidIdentifier(TInvalidIdentifier node);
     void caseTComment(TComment node);
     void caseTUnknown(TUnknown node);
     void caseEOF(EOF node);

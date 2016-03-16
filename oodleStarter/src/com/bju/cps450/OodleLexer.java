@@ -106,7 +106,7 @@ public class OodleLexer extends Lexer {
 	}
 
 	//checks to see if token is an invalid identifier
-	public boolean isInvalidIdentifier(Token _token)
+	/*public boolean isInvalidIdentifier(Token _token)
 	{
 		if (_token instanceof TInvalidIdentifier)
 		{
@@ -114,7 +114,7 @@ public class OodleLexer extends Lexer {
 			return true;
 		}
 		return false;
-	}
+	}*/
 
 	//checks to see if token is an ignored token
 	public boolean isIgnore(Token _token)
@@ -187,10 +187,10 @@ public class OodleLexer extends Lexer {
 		{
 			printCurrentToken(this.token, "Identifier:" + this.token);
 		}
-		else if(isInvalidIdentifier(this.token))
-		{
-			printCurrentToken(this.token, "Invalid Identifier:" + this.token);
-		}
+		//else if(isInvalidIdentifier(this.token))
+		//{
+		//	printCurrentToken(this.token, "Invalid Identifier:" + this.token);
+		//}
 		else if(isIgnore(this.token))
 		{
 			this.token = null;

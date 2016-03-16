@@ -435,6 +435,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getCond().apply(this);
         }
+        if(node.getIf() != null)
+        {
+            node.getIf().apply(this);
+        }
         outAIfStatement(node);
     }
 

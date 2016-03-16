@@ -46,6 +46,7 @@ public class SemanticChecker extends DepthFirstAdapter {
 
     @Override
     public void outAInheritsFrom(AInheritsFrom node) {
+        lastToken = node.getIdentifier();
         ClassDeclaration decl = Application.getSymbolTable().lookup(node.getIdentifier().getText(), ClassDeclaration.class);
         if(decl == null) {
             reportError("class " + node.getIdentifier().getText() + " does not exist in the current scope");
@@ -55,37 +56,52 @@ public class SemanticChecker extends DepthFirstAdapter {
     }
 
     @Override
-    public void inAMethod(AMethod node) {
-        lastToken = node.getIdentifier();
-        currentMethod = currentClass.lookupMethod(node.getIdentifier().getText());
+    public void inAMethodDecl(AMethodDecl node) {
+        lastToken = node.getStart();
+        currentMethod = currentClass.lookupMethod(node.getStart().getText());
         if(currentMethod == null) {
-            reportError("method " + node.getIdentifier().getText() + " does not exist in the current scope");
+            reportError("method " + node.getStart().getText() + " does not exist in the current scope");
         }
     }
 
     @Override
-    public void outAIntType(AIntType node) {
-        Application.getNodeProperties(node).setType(Type.oodInt);
+    public void outAMethodDecl(AMethodDecl node) {
+        currentMethod = null;
     }
 
     @Override
-    public void outABooleanType(ABooleanType node) {
-        Application.getNodeProperties(node).setType(Type.oodBool);
-    }
+    public void outAVarDecl(AVarDecl node) {
+        lastToken = node.getIdentifier();
+        Type t = Application.getNodeProperties(node.getExpression()).getType();
+        if (t == null)
+        {
+            t = Application.getNodeProperties(node.getType()).getType();
+            if (t == null)
+            {
+                Application.getNodeProperties(node).setType(Type.oodError);
+                reportError("No type specified");
+                return;
+            }
+        }
+        if(currentMethod == null && node.getExpression() != null)
+        {
+            reportError("Unsupported Feature: Variable declaration outside method");
+        }
+        else if (node.getType() == null && currentClass.lookupVariable(node.getIdentifier().toString()) == null)
+        {
+            reportError("No type specified");
+        }
 
-    @Override
-    public void outAStringType(AStringType node) {
-        Application.getNodeProperties(node).setType(Type.oodString);
-    }
-
-    @Override
-    public void outAIdType(AIdType node)
-    {
-        Application.getNodeProperties(node).setType(new Type(node.getIdentifier().getText()));
+        if (t.equals(Type.oodString))
+        {
+            reportError("Unsupported Feature: type string");
+        }
+        Application.getNodeProperties(node).setType(t);
     }
 
     @Override
     public void outAIfStatement(AIfStatement node) {
+        lastToken = node.getIf();
         if(!Application.getNodeProperties(node.getCond()).getType().equals(Type.oodBool)) {
             reportError("if statement condition must be of type boolean");
         }
@@ -106,6 +122,7 @@ public class SemanticChecker extends DepthFirstAdapter {
         AbstractVariableDeclaration decl = null;
         if(currentMethod == null) {
             decl = currentClass.lookupVariable(node.getIdentifier().getText());
+            reportError("Unsupported Feature: Assignment outside method");
         } else {
             decl = currentMethod.lookupVariable(node.getIdentifier().getText());
         }
@@ -123,7 +140,11 @@ public class SemanticChecker extends DepthFirstAdapter {
             }
             wanted = t;
             Type given = Application.getNodeProperties(node.getSecond()).getType();
-            if(!given.equals(wanted)) {
+            if (given == null)
+            {
+                reportError("variable " + node.getIdentifier().getText() + " expects type of " + wanted.getName() + " but got void");
+            }
+            else if(!given.equals(wanted)) {
                 reportError("variable " + node.getIdentifier().getText() + " expects type of " + wanted.getName() + " but got " + given.getName());
             }
         }
@@ -132,6 +153,7 @@ public class SemanticChecker extends DepthFirstAdapter {
     @Override
     public void outACallStatement(ACallStatement node) {
         ClassDeclaration parentClass = currentClass;
+        lastToken = node.getIdentifier();
         if(node.getCaller() != null) {
             Type t = Application.getNodeProperties(node.getCaller()).getType();
             ClassDeclaration decl = Application.getSymbolTable().lookup(t.getName(), ClassDeclaration.class);
@@ -251,6 +273,16 @@ public class SemanticChecker extends DepthFirstAdapter {
     }
 
     @Override
+    public void outAIncExpression(AIncExpression node) {
+        checkExpression("inc", node, Application.getNodeProperties(node.getRhs()).getType(), Application.getNodeProperties(node.getRhs()).getType(), Type.oodInt, Type.oodInt);
+    }
+
+    @Override
+    public void outAConcatExpression(AConcatExpression node) {
+        checkExpression("concat", node, Application.getNodeProperties(node.getRhs()).getType(), Application.getNodeProperties(node.getRhs()).getType(), Type.oodString, Type.oodString);
+    }
+
+    @Override
     public void outAArrayExpression(AArrayExpression node) {
         /*lastToken = node.getIdentifier();
         AbstractVariableDeclaration decl = null;
@@ -321,6 +353,7 @@ public class SemanticChecker extends DepthFirstAdapter {
     @Override
     public void outAStringExpression(AStringExpression node) {
         lastToken = node.getStrIteral();
+        reportError("Unsupported Feature: type string");
         Application.getNodeProperties(node).setType(Type.oodString);
     }
 
@@ -339,6 +372,7 @@ public class SemanticChecker extends DepthFirstAdapter {
     @Override
     public void outAIdentifierExpression(AIdentifierExpression node) {
         AbstractVariableDeclaration decl = null;
+        lastToken = node.getIdentifier();
         if(currentMethod == null) {
             decl = currentClass.lookupVariable(node.getIdentifier().getText());
         } else {
@@ -348,6 +382,10 @@ public class SemanticChecker extends DepthFirstAdapter {
             reportError("variable / argument " + node.getIdentifier().getText() + " does not exist in the current scope");
             Application.getNodeProperties(node).setType(Type.oodError);
         } else {
+            if (decl.getType().getName().equals("oodString"))
+            {
+                reportError("Unsupported Feature: type string");
+            }
             Application.getNodeProperties(node).setType(decl.getType());
         }
     }
@@ -359,10 +397,10 @@ public class SemanticChecker extends DepthFirstAdapter {
     }
 
     @Override
-    public void outANewObjExpression(ANewObjExpression node) {
-        ClassDeclaration decl = Application.getSymbolTable().lookup(node.getClass().toString(), ClassDeclaration.class);
+    public void outANewObjExpression(ANewObjExpression node){
+        ClassDeclaration decl = Application.getSymbolTable().lookup(node.getType().toString(), ClassDeclaration.class);
         if(decl == null) {
-            reportError("class " + node.getClass().toString() + " does not exist in the current scope");
+            reportError("class " + node.getType().toString() + " does not exist in the current scope");
             Application.getNodeProperties(node).setType(Type.oodError);
         } else {
             Application.getNodeProperties(node).setType(decl.getType());

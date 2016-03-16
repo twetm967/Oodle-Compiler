@@ -2,8 +2,10 @@
 
 package com.bju.cps450.analysis;
 
-import java.util.*;
 import com.bju.cps450.node.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DepthFirstAdapter extends AnalysisAdapter
 {
@@ -408,6 +410,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAIfStatement(AIfStatement node)
     {
         inAIfStatement(node);
+        if(node.getIf() != null)
+        {
+            node.getIf().apply(this);
+        }
         if(node.getCond() != null)
         {
             node.getCond().apply(this);

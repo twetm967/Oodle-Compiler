@@ -2356,24 +2356,26 @@ public class Parser
         PStatement pstatementNode1;
         {
             // Block
-        PExpression pexpressionNode2;
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        TIf tifNode2;
+        PExpression pexpressionNode3;
         LinkedList<Object> listNode5 = new LinkedList<Object>();
-        pexpressionNode2 = (PExpression)nodeArrayList2.get(0);
+        LinkedList<Object> listNode6 = new LinkedList<Object>();
+        tifNode2 = (TIf)nodeArrayList1.get(0);
+        pexpressionNode3 = (PExpression)nodeArrayList2.get(0);
         {
             // Block
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        listNode3 = (LinkedList)nodeArrayList5.get(0);
-	if(listNode3 != null)
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        listNode4 = (LinkedList)nodeArrayList5.get(0);
+	if(listNode4 != null)
 	{
-	  listNode4.addAll(listNode3);
+	  listNode5.addAll(listNode4);
 	}
         }
         {
             // Block
         }
 
-        pstatementNode1 = new AIfStatement(pexpressionNode2, listNode4, listNode5);
+        pstatementNode1 = new AIfStatement(tifNode2, pexpressionNode3, listNode5, listNode6);
         }
 	nodeList.add(pstatementNode1);
         return nodeList;
@@ -2397,30 +2399,32 @@ public class Parser
         PStatement pstatementNode1;
         {
             // Block
-        PExpression pexpressionNode2;
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
-        LinkedList<Object> listNode6 = new LinkedList<Object>();
-        pexpressionNode2 = (PExpression)nodeArrayList2.get(0);
+        TIf tifNode2;
+        PExpression pexpressionNode3;
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
+        LinkedList<Object> listNode7 = new LinkedList<Object>();
+        tifNode2 = (TIf)nodeArrayList1.get(0);
+        pexpressionNode3 = (PExpression)nodeArrayList2.get(0);
         {
             // Block
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        listNode3 = (LinkedList)nodeArrayList5.get(0);
-	if(listNode3 != null)
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        listNode4 = (LinkedList)nodeArrayList5.get(0);
+	if(listNode4 != null)
 	{
-	  listNode4.addAll(listNode3);
+	  listNode5.addAll(listNode4);
 	}
         }
         {
             // Block
-        LinkedList<Object> listNode5 = new LinkedList<Object>();
-        listNode5 = (LinkedList)nodeArrayList6.get(0);
-	if(listNode5 != null)
+        LinkedList<Object> listNode6 = new LinkedList<Object>();
+        listNode6 = (LinkedList)nodeArrayList6.get(0);
+	if(listNode6 != null)
 	{
-	  listNode6.addAll(listNode5);
+	  listNode7.addAll(listNode6);
 	}
         }
 
-        pstatementNode1 = new AIfStatement(pexpressionNode2, listNode4, listNode6);
+        pstatementNode1 = new AIfStatement(tifNode2, pexpressionNode3, listNode5, listNode7);
         }
 	nodeList.add(pstatementNode1);
         return nodeList;
@@ -3209,13 +3213,7 @@ public class Parser
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
         PExpression pexpressionNode1;
-        {
-            // Block
-        PExpression pexpressionNode2;
-        pexpressionNode2 = (PExpression)nodeArrayList2.get(0);
-
-        pexpressionNode1 = new AExprExpression(pexpressionNode2);
-        }
+        pexpressionNode1 = (PExpression)nodeArrayList2.get(0);
 	nodeList.add(pexpressionNode1);
         return nodeList;
     }
@@ -3959,7 +3957,7 @@ public class Parser
 			{{-1, ERROR, 0}, {0, SHIFT, 1}, {3, SHIFT, 2}, },
 			{{-1, REDUCE, 94}, },
 			{{-1, ERROR, 2}, {45, SHIFT, 6}, },
-			{{-1, ERROR, 3}, {48, ACCEPT, -1}, },
+			{{-1, ERROR, 3}, {47, ACCEPT, -1}, },
 			{{-1, REDUCE, 0}, {0, SHIFT, 1}, },
 			{{-1, ERROR, 5}, {0, SHIFT, 10}, {3, SHIFT, 2}, },
 			{{-1, ERROR, 6}, {9, SHIFT, 12}, {11, SHIFT, 13}, },

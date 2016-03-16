@@ -1,5 +1,7 @@
 package com.bju.cps450;
 
+import com.bju.cps450.application.Application;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,7 @@ public class FileManager {
 			//loops through files to combine into the tempfile
 	    	for(String file : _oodFiles)
 	    	{
+				int filelength = 0;
 	    		OriginalOodFile nFile = new OriginalOodFile();
 	    		nFile.setStart(_lineCounter); //keeps track of original file start line number
 	    		nFile.setFileName(file);
@@ -51,6 +54,7 @@ public class FileManager {
 	    		try(BufferedReader br = new BufferedReader(new FileReader(file))) {
 	    		    for(String line; (line = br.readLine()) != null; ++_lineCounter) {
 	    		        bw.write(line + '\n');
+						++filelength;
 	    		    }
 	    		}
 	    	
@@ -59,7 +63,8 @@ public class FileManager {
 				}
 	    		nFile.setEnd(_lineCounter);// original file end line number
 	    		originalFileMaps.add(nFile);
-	    	}
+				Application.addFile(file, filelength);
+			}
 	    	bw.close();
     	
 		}

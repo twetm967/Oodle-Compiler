@@ -597,12 +597,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTInvalidIdentifier(TInvalidIdentifier node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseTComment(TComment node)
     {
         defaultCase(node);

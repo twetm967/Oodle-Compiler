@@ -29,16 +29,16 @@ public class SymbolTable {
             println.getArguments().add(printlnArg1);
             println.setOwner(writerDeclaration);
             writerDeclaration.getMethods().add(println);*/
-            MethodDeclaration printint = new MethodDeclaration();
-            printint.setReturnType(Type.oodVoid);
-            printint.setName("printint");
-            ArgumentDeclaration printintArg1 = new ArgumentDeclaration();
-            printintArg1.setName("int");
-            printintArg1.setType(Type.oodInt);
-            printintArg1.setMethodOwner(printint);
-            printint.getArguments().add(printintArg1);
-            printint.setOwner(writerDeclaration);
-            writerDeclaration.getMethods().add(printint);
+            MethodDeclaration writeint = new MethodDeclaration();
+            writeint.setReturnType(Type.oodVoid);
+            writeint.setName("writeint");
+            ArgumentDeclaration writeintArg1 = new ArgumentDeclaration();
+            writeintArg1.setName("int");
+            writeintArg1.setType(Type.oodInt);
+            writeintArg1.setMethodOwner(writeint);
+            writeint.getArguments().add(writeintArg1);
+            writeint.setOwner(writerDeclaration);
+            writerDeclaration.getMethods().add(writeint);
 
             symbolTableStack.get(0).add(writerDeclaration);
 

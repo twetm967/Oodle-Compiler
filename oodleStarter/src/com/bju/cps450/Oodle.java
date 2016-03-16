@@ -71,9 +71,8 @@ public class Oodle
 			Parser oodleParser = new Parser(lexer);
 			try {
 				Start node = oodleParser.parse();
-				SemanticChecker checker = new SemanticChecker();
 				node.apply(new OodleSymbolTableBuilder());
-				node.apply(checker);
+				node.apply(new SemanticChecker());
 			} catch (ParserException e) {
 				System.out.println(e.getMessage() + " got: " + e.getToken().getText());
 			}
