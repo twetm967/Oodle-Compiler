@@ -6,7 +6,9 @@
  */
 
 package com.bju.cps450;
+
 import com.bju.cps450.lexer.LexerException;
+import com.bju.cps450.node.Start;
 import com.bju.cps450.node.Token;
 import com.bju.cps450.parser.Parser;
 import com.bju.cps450.parser.ParserException;
@@ -65,14 +67,13 @@ public class Oodle
 			System.out.println("Starting Oodle Lexer");
 			System.out.println("");
 			OodleLexer lexer = new OodleLexer(manager, manager.getTempFileName(), CmdParser.print);
-			token = null;
-			//zwhile (!(token instanceof EOF))
-			//{
-			//	token = lexer.next();
-			//}
+
 			Parser oodleParser = new Parser(lexer);
 			try {
-				oodleParser.parse();
+				Start node = oodleParser.parse();
+				SemanticChecker checker = new SemanticChecker();
+				node.apply(new OodleSymbolTableBuilder());
+				node.apply(checker);
 			} catch (ParserException e) {
 				System.out.println(e.getMessage() + " got: " + e.getToken().getText());
 			}
