@@ -12,6 +12,7 @@ import com.bju.cps450.node.*;
 public class OodleSymbolTableBuilder extends DepthFirstAdapter {
 
     private Token lastToken;
+    private boolean firstClass = true;
 
     private void reportError(String error) {
         Application.addSemanticError();
@@ -42,11 +43,18 @@ public class OodleSymbolTableBuilder extends DepthFirstAdapter {
     public void inAClassDecl(AClassDecl node) {
         lastToken = node.getStart();
         try {
-            Application.getSymbolTable().addClassDeclaration(node.getStart().getText());
+            if(firstClass == true) {
+                Application.getSymbolTable().addClassDeclaration(node.getStart().getText());
+                Application.getSymbolTable().beginScope();
+                firstClass = false;
+            }
+            else {
+                reportError("Unsupported Feature: Multiple Classes");
+            }
         } catch(Exception e) {
             reportError(e.getMessage());
         }
-        Application.getSymbolTable().beginScope();
+
     }
 
     @Override
@@ -114,5 +122,11 @@ public class OodleSymbolTableBuilder extends DepthFirstAdapter {
     public void outAIdType(AIdType node)
     {
         Application.getNodeProperties(node).setType(new Type(node.getIdentifier().getText()));
+    }
+
+    @Override
+    public void outAArrayType(AArrayType node) {
+        Application.getNodeProperties(node).setType(Type.oodError);
+        reportError("Unsupported Feature: Array");
     }
 }

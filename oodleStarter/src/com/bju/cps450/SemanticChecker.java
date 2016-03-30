@@ -46,13 +46,15 @@ public class SemanticChecker extends DepthFirstAdapter {
 
     @Override
     public void outAInheritsFrom(AInheritsFrom node) {
-        lastToken = node.getIdentifier();
+        /*lastToken = node.getIdentifier();
         ClassDeclaration decl = Application.getSymbolTable().lookup(node.getIdentifier().getText(), ClassDeclaration.class);
         if(decl == null) {
             reportError("class " + node.getIdentifier().getText() + " does not exist in the current scope");
         } else {
             currentClass.setParent(decl);
-        }
+        }*/
+        reportError("Unsupported Feature: inheritance");
+        Application.getNodeProperties(node).setType(Type.oodError);
     }
 
     @Override
@@ -86,16 +88,29 @@ public class SemanticChecker extends DepthFirstAdapter {
         if(currentMethod == null && node.getExpression() != null)
         {
             reportError("Unsupported Feature: Variable declaration outside method");
+            Application.getNodeProperties(node).setType(Type.oodError);
         }
         else if (node.getType() == null && currentClass.lookupVariable(node.getIdentifier().toString()) == null)
         {
             reportError("No type specified");
+            Application.getNodeProperties(node).setType(Type.oodError);
+            return;
         }
 
         if (t.equals(Type.oodString))
         {
             reportError("Unsupported Feature: type string");
+            Application.getNodeProperties(node).setType(Type.oodError);
+            return;
         }
+
+        if(node.getExpression() != null)
+        {
+            reportError("Unsupported Feature: Initializer Expression");
+            Application.getNodeProperties(node).setType(Type.oodError);
+            return;
+        }
+
         Application.getNodeProperties(node).setType(t);
     }
 
@@ -393,18 +408,21 @@ public class SemanticChecker extends DepthFirstAdapter {
     @Override
     public void outAMeExpression(AMeExpression node) {
         lastToken = node.getMe();
-        Application.getNodeProperties(node).setType(currentClass.getType());
+        reportError("Unsupported Feature: Me");
+        Application.getNodeProperties(node).setType(Type.oodError);
     }
 
     @Override
     public void outANewObjExpression(ANewObjExpression node){
-        ClassDeclaration decl = Application.getSymbolTable().lookup(node.getType().toString(), ClassDeclaration.class);
+        /*ClassDeclaration decl = Application.getSymbolTable().lookup(node.getType().toString(), ClassDeclaration.class);
         if(decl == null) {
             reportError("class " + node.getType().toString() + " does not exist in the current scope");
             Application.getNodeProperties(node).setType(Type.oodError);
         } else {
             Application.getNodeProperties(node).setType(decl.getType());
-        }
+        }*/
+        reportError("Unsupported Feature: New");
+        Application.getNodeProperties(node).setType(Type.oodError);
     }
 }
 

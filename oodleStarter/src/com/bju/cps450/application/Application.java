@@ -1,5 +1,6 @@
 package com.bju.cps450.application;
 
+import com.bju.cps450.instruction.InstructionSet;
 import com.bju.cps450.node.Node;
 import com.bju.cps450.node.Token;
 
@@ -13,6 +14,7 @@ import java.util.Map;
 public class Application {
     public static class NodePropertiesContainer {
         private Type type;
+        private InstructionSet code;
 
         public Type getType() {
             return type;
@@ -22,6 +24,13 @@ public class Application {
             this.type = type;
         }
 
+        public InstructionSet getCode() {
+            return code;
+        }
+
+        public void setCode(InstructionSet code) {
+            this.code = code;
+        }
     }
 
     private static Map<Node, NodePropertiesContainer> nodePropertyMap = new HashMap<>();
