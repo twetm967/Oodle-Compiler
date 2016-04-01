@@ -20,6 +20,8 @@ public class SemanticChecker extends DepthFirstAdapter {
     private ClassDeclaration currentClass;
     private MethodDeclaration currentMethod;
     private Token lastToken;
+    private Boolean success = true;
+    private int errorNum = 0;
 
     private void reportError(String error) {
         Application.addSemanticError();
@@ -28,6 +30,16 @@ public class SemanticChecker extends DepthFirstAdapter {
         } else {
             System.out.println(error);
         }
+        success = false;
+        ++errorNum;
+    }
+
+    public boolean getSuccess(){
+        return success;
+    }
+
+    public int getErrorNum(){
+        return errorNum;
     }
 
     @Override

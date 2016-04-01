@@ -7,13 +7,14 @@
 
 package com.bju.cps450;
 
+import com.bju.cps450.application.Application;
 import com.bju.cps450.lexer.LexerException;
 import com.bju.cps450.node.Start;
 import com.bju.cps450.node.Token;
 import com.bju.cps450.parser.Parser;
 import com.bju.cps450.parser.ParserException;
 
-import java.io.IOException;
+import java.io.*;
 
 public class Oodle
 {
@@ -72,7 +73,48 @@ public class Oodle
 			try {
 				Start node = oodleParser.parse();
 				node.apply(new OodleSymbolTableBuilder());
-				node.apply(new SemanticChecker());
+				SemanticChecker checker = new SemanticChecker();
+				node.apply(checker);
+				if(checker.getSuccess())
+				{
+					OodleCodeGenerator codeGen = new OodleCodeGenerator();
+					node.apply(codeGen);
+					String[] array = CmdParser.oodleFiles.toArray(new String[CmdParser.oodleFiles.size()]);
+					String filename = array[0].split("/")[array[0].split("/").length - 1].split("\\.")[0];
+					String assembly = Application.getNodeProperties(node).getCode().toAssembly();
+					if(CmdParser.printAssembly)
+					{
+						File file = new File(filename + ".s");
+						BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+						writer.write(assembly, 0, assembly.length());
+						writer.close();
+					}
+					else {
+						File file = new File(filename + ".s");
+						BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+						writer.write(assembly, 0, assembly.length());
+						writer.close();
+						ProcessBuilder pb = new ProcessBuilder("gcc", "-m32", "-g", "-o", filename, filename + ".s", "stdlib.o");
+						Process p = pb.start();
+						int exitCode = -1;
+						try {
+							exitCode = p.waitFor();
+						} catch (InterruptedException e) {
+							System.out.println(e.getMessage());
+							exitCode = 1;
+						}
+						if (exitCode == 0) {
+							file.delete();
+						} else {
+							System.out.println("compilation failed:");
+							BufferedReader reader = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+							String line;
+							while ((line = reader.readLine()) != null) {
+								System.out.println(line);
+							}
+						}
+					}
+				}
 			} catch (ParserException e) {
 				System.out.println(e.getMessage() + " got: " + e.getToken().getText());
 			}

@@ -6,7 +6,6 @@ public class CmdParser {
 	public static boolean print = false;
 	public static boolean help = false;
 	public static boolean printAssembly = false;
-	public static String[] possibleFiles;
 	public static List<String> files = new ArrayList<String>();
 	public static List<String> oodleFiles = new ArrayList<String>();
 	

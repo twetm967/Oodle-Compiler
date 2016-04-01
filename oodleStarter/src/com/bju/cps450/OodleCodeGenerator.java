@@ -128,10 +128,14 @@ public class OodleCodeGenerator extends DepthFirstAdapter {
         set.appendInstruction(new InstructionCommand(Instruction.pop, Register.eax));
         set.appendInstruction(new InstructionCommand(Instruction.compare, new IntegerLiteral(0), Register.eax));
         set.appendInstruction(new InstructionCommand(Instruction.je, new Label("label_" + (labelCtr - 2))));
-        set.appendInstructionSet(Application.getNodeProperties(node.getTrue()).getCode());
+        for(PStatement c : node.getTrue()) {
+            set.appendInstructionSet(Application.getNodeProperties(c).getCode());
+        }
         set.appendInstruction(new InstructionCommand(Instruction.jump, new Label("label_" + (labelCtr - 1))));
         set.appendInstruction(new LabelInstruction("label_" + (labelCtr - 2)));
-        set.appendInstructionSet(Application.getNodeProperties(node.getFalse()).getCode());
+        for(PStatement c : node.getFalse()) {
+            set.appendInstructionSet(Application.getNodeProperties(c).getCode());
+        }
         set.appendInstruction(new LabelInstruction("label_" + (labelCtr - 1)));
         Application.getNodeProperties(node).setCode(set);
     }
@@ -145,7 +149,9 @@ public class OodleCodeGenerator extends DepthFirstAdapter {
         set.appendInstruction(new InstructionCommand(Instruction.pop, Register.eax));
         set.appendInstruction(new InstructionCommand(Instruction.compare, new IntegerLiteral(0), Register.eax));
         set.appendInstruction(new InstructionCommand(Instruction.je, new Label("label_" + (labelCtr - 1))));
-        set.appendInstructionSet(Application.getNodeProperties(node.getStatement()).getCode());
+        for(PStatement c : node.getStatement()) {
+            set.appendInstructionSet(Application.getNodeProperties(c).getCode());
+        }
         set.appendInstruction(new InstructionCommand(Instruction.jump, new Label("label_" + (labelCtr - 2))));
         set.appendInstruction(new LabelInstruction("label_" + (labelCtr - 1)));
         Application.getNodeProperties(node).setCode(set);
@@ -154,7 +160,7 @@ public class OodleCodeGenerator extends DepthFirstAdapter {
     @Override
     public void outAAsgnStatement(AAsgnStatement node) {
         InstructionSet set = new InstructionSet();
-        set.appendInstructionSet(Application.getNodeProperties(node.getIdentifier()).getCode());
+        set.appendInstructionSet(Application.getNodeProperties(node.getSecond()).getCode());
         set.appendInstruction(new InstructionCommand(Instruction.pop, new Label(node.getIdentifier().getText())));
         Application.getNodeProperties(node).setCode(set);
     }
@@ -210,7 +216,16 @@ public class OodleCodeGenerator extends DepthFirstAdapter {
 
     @Override
     public void outAGteExpression(AGteExpression node) {
-        super.outAGteExpression(node);
+        InstructionSet set = new InstructionSet();
+        set.appendInstructionSet(Application.getNodeProperties(node.getLhs()).getCode());
+        set.appendInstructionSet(Application.getNodeProperties(node.getRhs()).getCode());
+        set.appendInstruction(new InstructionCommand(Instruction.pop, Register.ebx));
+        set.appendInstruction(new InstructionCommand(Instruction.pop, Register.eax));
+        set.appendInstruction(new InstructionCommand(Instruction.compare, Register.ebx, Register.eax));
+        set.appendInstruction(new InstructionCommand(Instruction.setge, Register.al));
+        set.appendInstruction(new InstructionCommand(Instruction.movzbl, Register.al, Register.eax));
+        set.appendInstruction(new InstructionCommand(Instruction.push, Register.eax));
+        Application.getNodeProperties(node).setCode(set);
     }
 
     @Override
@@ -270,7 +285,7 @@ public class OodleCodeGenerator extends DepthFirstAdapter {
         set.appendInstructionSet(Application.getNodeProperties(node.getRhs()).getCode());
         set.appendInstruction(new InstructionCommand(Instruction.pop, Register.ebx));
         set.appendInstruction(new InstructionCommand(Instruction.pop, Register.eax));
-        set.appendInstruction(new InstructionCommand(Instruction.move, new IntegerLiteral(0), Register.edx));
+        set.appendInstruction(new InstructionCommand(Instruction.cdq));
         set.appendInstruction(new InstructionCommand(Instruction.div, Register.ebx));
         set.appendInstruction(new InstructionCommand(Instruction.push, Register.eax));
         Application.getNodeProperties(node).setCode(set);
@@ -278,6 +293,7 @@ public class OodleCodeGenerator extends DepthFirstAdapter {
 
     @Override
     public void outANotExpression(ANotExpression node) {
+        labelCtr +=2;
         InstructionSet set = new InstructionSet();
         set.appendInstructionSet(Application.getNodeProperties(node.getRhs()).getCode());
         set.appendInstruction(new InstructionCommand(Instruction.pop, Register.eax));
@@ -368,13 +384,18 @@ public class OodleCodeGenerator extends DepthFirstAdapter {
 
     @Override
     public void outAIncExpression(AIncExpression node) {
-        super.outAIncExpression(node);
+        InstructionSet set = new InstructionSet();
+        set.appendInstructionSet(Application.getNodeProperties(node.getRhs()).getCode());
+        set.appendInstruction(new InstructionCommand(Instruction.pop, Register.eax));
+        set.appendInstruction(new InstructionCommand(Instruction.add, new IntegerLiteral(1), Register.eax));
+        set.appendInstruction(new InstructionCommand(Instruction.push, Register.eax));
+        Application.getNodeProperties(node).setCode(set);
     }
 
     @Override
     public void outAExprExpression(AExprExpression node) {
-        super.outAExprExpression(node);
+        InstructionSet set = new InstructionSet();
+        set.appendInstructionSet(Application.getNodeProperties(node.getExpression()).getCode());
+        Application.getNodeProperties(node).setCode(set);
     }
-
-
 }
