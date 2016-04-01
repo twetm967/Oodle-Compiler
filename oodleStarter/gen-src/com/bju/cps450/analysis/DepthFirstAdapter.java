@@ -2,10 +2,8 @@
 
 package com.bju.cps450.analysis;
 
+import java.util.*;
 import com.bju.cps450.node.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DepthFirstAdapter extends AnalysisAdapter
 {

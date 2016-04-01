@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01710a5d-0254-4a86-8265-ca12c9772659" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/com/bju/cps450/CmdParser.class" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/CmdParser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/com/bju/cps450/Oodle.class" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/Oodle.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/com/bju/cps450/SemanticChecker.class" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/SemanticChecker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/com/bju/cps450/application/Application$NodePropertiesContainer.class" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/application/Application$NodePropertiesContainer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/com/bju/cps450/application/Application.class" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/application/Application.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/com/bju/cps450/analysis/DepthFirstAdapter.class" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/analysis/DepthFirstAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/com/bju/cps450/parser/parser.dat" afterPath="$PROJECT_DIR$/bin/com/bju/cps450/parser/parser.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/parser/parser.dat" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/parser/parser.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bju/cps450/CmdParser.java" afterPath="$PROJECT_DIR$/src/com/bju/cps450/CmdParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bju/cps450/Oodle.java" afterPath="$PROJECT_DIR$/src/com/bju/cps450/Oodle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bju/cps450/OodleCodeGenerator.java" afterPath="$PROJECT_DIR$/src/com/bju/cps450/OodleCodeGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bju/cps450/SemanticChecker.java" afterPath="$PROJECT_DIR$/src/com/bju/cps450/SemanticChecker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bju/cps450/instruction/Instruction.java" afterPath="$PROJECT_DIR$/src/com/bju/cps450/instruction/Instruction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/oodle.scc" afterPath="$PROJECT_DIR$/bin/oodle.scc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/analysis/DepthFirstAdapter.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/analysis/DepthFirstAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen-src/com/bju/cps450/parser/Parser.java" afterPath="$PROJECT_DIR$/gen-src/com/bju/cps450/parser/Parser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oodle.scc" afterPath="$PROJECT_DIR$/src/oodle.scc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tempOodleFile.ood" afterPath="$PROJECT_DIR$/tempOodleFile.ood" />
     </list>
     <ignored path="oodleStarter.iws" />
@@ -37,8 +34,8 @@
             <file leaf-file-name="oodle.scc" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/oodle.scc">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.72336066">
-                    <caret line="246" column="91" selection-start-line="246" selection-start-column="41" selection-end-line="246" selection-end-column="91" />
+                  <state vertical-scroll-proportion="0.37142858">
+                    <caret line="147" column="87" selection-start-line="147" selection-start-column="75" selection-end-line="147" selection-end-column="87" />
                     <folding />
                   </state>
                 </provider>
@@ -55,10 +52,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Oodle.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Oodle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/Oodle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.166667">
+            <state vertical-scroll-proportion="1.2567114">
               <caret line="106" column="42" selection-start-line="106" selection-start-column="42" selection-end-line="106" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -81,18 +78,20 @@
         <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/instruction/Instruction.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CmdParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/CmdParser.java">
+      <file leaf-file-name="OodleCodeGenerator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/OodleCodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
-              <folding />
+            <state vertical-scroll-proportion="-1.7419355">
+              <caret line="202" column="13" selection-start-line="202" selection-start-column="13" selection-end-line="202" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -103,18 +102,6 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OodleCodeGenerator.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/OodleCodeGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54453784">
-              <caret line="214" column="5" selection-start-line="214" selection-start-column="5" selection-end-line="214" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -192,7 +179,6 @@
         <option value="$PROJECT_DIR$/gen-src/com/bju/cps450/node/AClassDecl.java" />
         <option value="$PROJECT_DIR$/src/com/bju/cps450/FileManager.java" />
         <option value="$PROJECT_DIR$/src/com/bju/cps450/OodleLexer.java" />
-        <option value="$PROJECT_DIR$/src/oodle.scc" />
         <option value="$PROJECT_DIR$/src/com/bju/cps450/application/SymbolTable.java" />
         <option value="$PROJECT_DIR$/src/com/bju/cps450/OodleSymbolTableBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/bju/cps450/instruction/parameters/IntegerLiteral.java" />
@@ -211,6 +197,7 @@
         <option value="$PROJECT_DIR$/src/com/bju/cps450/CmdParser.java" />
         <option value="$PROJECT_DIR$/src/com/bju/cps450/Oodle.java" />
         <option value="$PROJECT_DIR$/src/com/bju/cps450/OodleCodeGenerator.java" />
+        <option value="$PROJECT_DIR$/src/oodle.scc" />
       </list>
     </option>
   </component>
@@ -360,7 +347,7 @@
       <pane id="PackagesPane" />
     </panes>
   </component>
-  <component name="RunManager" selected="Application.phase4_breakit">
+  <component name="RunManager" selected="Application.phase4_assign1">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -617,6 +604,36 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="false" name="phase4_testnum" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="com.bju.cps450.Oodle" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/com/bju/cps450/tests/phase4/control/testnum.ood" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="oodleStarter" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="phase4_loopy" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="com.bju.cps450.Oodle" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/com/bju/cps450/tests/phase4/control/loopy.ood" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="oodleStarter" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="false" name="phase4_breakit" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="com.bju.cps450.Oodle" />
@@ -827,21 +844,23 @@
       <envs />
       <method />
     </configuration>
-    <list size="14">
-      <item index="0" class="java.lang.String" itemvalue="Application.phase4_breakit" />
-      <item index="1" class="java.lang.String" itemvalue="Application.phase4_assign1" />
-      <item index="2" class="java.lang.String" itemvalue="Application.phase3_arrayindex" />
-      <item index="3" class="java.lang.String" itemvalue="Application.phase3_test0" />
-      <item index="4" class="java.lang.String" itemvalue="Application.phase3_stmt1" />
-      <item index="5" class="java.lang.String" itemvalue="Application.phase3_meth1" />
-      <item index="6" class="java.lang.String" itemvalue="Application.phase3_expr1" />
-      <item index="7" class="java.lang.String" itemvalue="Application.phase3_test0ok" />
-      <item index="8" class="java.lang.String" itemvalue="Application.phase3_stmt1ok" />
-      <item index="9" class="java.lang.String" itemvalue="Application.phase3_meth1ok" />
-      <item index="10" class="java.lang.String" itemvalue="Application.phase3_EXP1OK" />
-      <item index="11" class="java.lang.String" itemvalue="Application.phase3_decl3" />
-      <item index="12" class="java.lang.String" itemvalue="Application.phase3_decls2" />
-      <item index="13" class="java.lang.String" itemvalue="Application.phase3_decls1" />
+    <list size="16">
+      <item index="0" class="java.lang.String" itemvalue="Application.phase4_testnum" />
+      <item index="1" class="java.lang.String" itemvalue="Application.phase4_loopy" />
+      <item index="2" class="java.lang.String" itemvalue="Application.phase4_breakit" />
+      <item index="3" class="java.lang.String" itemvalue="Application.phase4_assign1" />
+      <item index="4" class="java.lang.String" itemvalue="Application.phase3_arrayindex" />
+      <item index="5" class="java.lang.String" itemvalue="Application.phase3_test0" />
+      <item index="6" class="java.lang.String" itemvalue="Application.phase3_stmt1" />
+      <item index="7" class="java.lang.String" itemvalue="Application.phase3_meth1" />
+      <item index="8" class="java.lang.String" itemvalue="Application.phase3_expr1" />
+      <item index="9" class="java.lang.String" itemvalue="Application.phase3_test0ok" />
+      <item index="10" class="java.lang.String" itemvalue="Application.phase3_stmt1ok" />
+      <item index="11" class="java.lang.String" itemvalue="Application.phase3_meth1ok" />
+      <item index="12" class="java.lang.String" itemvalue="Application.phase3_EXP1OK" />
+      <item index="13" class="java.lang.String" itemvalue="Application.phase3_decl3" />
+      <item index="14" class="java.lang.String" itemvalue="Application.phase3_decls2" />
+      <item index="15" class="java.lang.String" itemvalue="Application.phase3_decls1" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -940,14 +959,8 @@
           <properties />
           <option name="timeStamp" value="30" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/bju/cps450/instruction/InstructionSet.java</url>
-          <line>29</line>
-          <properties />
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="33" />
+      <option name="time" value="38" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1176,6 +1189,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="e#954#955#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1183,9 +1199,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
-          <folding>
-            <element signature="e#4168#4180#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1319,26 +1333,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/CmdParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="6" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/instruction/InstructionSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1378,36 +1376,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/oodle.scc">
+    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/CmdParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72336066">
-          <caret line="246" column="91" selection-start-line="246" selection-start-column="41" selection-end-line="246" selection-end-column="91" />
+        <state vertical-scroll-proportion="0.17252396">
+          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/Oodle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.166667">
-          <caret line="106" column="42" selection-start-line="106" selection-start-column="42" selection-end-line="106" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/instruction/Instruction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/instruction/InstructionSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oodle.scc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37142858">
+          <caret line="147" column="87" selection-start-line="147" selection-start-column="75" selection-end-line="147" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/OodleCodeGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54453784">
-          <caret line="214" column="5" selection-start-line="214" selection-start-column="5" selection-end-line="214" selection-end-column="5" />
+        <state vertical-scroll-proportion="-1.7419355">
+          <caret line="202" column="13" selection-start-line="202" selection-start-column="13" selection-end-line="202" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bju/cps450/Oodle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2567114">
+          <caret line="106" column="42" selection-start-line="106" selection-start-column="42" selection-end-line="106" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

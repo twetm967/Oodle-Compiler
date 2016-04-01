@@ -145,9 +145,9 @@ Productions
 
   expression_lvl4  {-> expression}      = {eq}   [left]:expression_lvlc T.equal [right]:expression_lvlc
                                                 {-> New expression.eq(left.expression, right.expression)}
-                                        | {gt}    [left]:expression_lvlc T.greater_eq [right]:expression_lvlc
+                                        | {gt}    [left]:expression_lvlc T.greater_than [right]:expression_lvlc
                                                 {-> New expression.gt(left.expression, right.expression)}
-                                        | {gte}   [left]:expression_lvlc T.greater_than [right]:expression_lvlc
+                                        | {gte}   [left]:expression_lvlc T.greater_eq  [right]:expression_lvlc
                                                 {-> New expression.gte(left.expression, right.expression)}
                                         | {pass} expression_lvlc {-> expression_lvlc.expression};
 
