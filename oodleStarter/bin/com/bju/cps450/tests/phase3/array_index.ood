@@ -1,0 +1,9 @@
+class test1 is
+         
+  start() is
+	x : int[]    
+  begin
+    x[0] := 3
+  end start
+  
+end test1
