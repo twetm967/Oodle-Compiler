@@ -105,7 +105,7 @@ Productions
   method_decl {-> method_decl}   = [sid]:T.identifier T.lparen argument_decl_list? T.rparen var_type? T.is [first]:T.newline+ var_decl*
                             T.begin [second]:T.newline+ statement_list
                             T.end [last]:T.identifier [third]:T.newline+
-                            {-> New method_decl(sid, [argument_decl_list.arg], var_type.type, [var_decl], [statement_list.statement],last)};
+                            {-> New method_decl(sid, var_type.type, [argument_decl_list.arg], [var_decl], [statement_list.statement],last)};
 
 
   argument_decl_list {-> arg*}    = arg_list_helper* argument_decl {-> [arg_list_helper.arg, argument_decl.arg]};
@@ -232,7 +232,7 @@ Productions
 
     var_decl                    = identifier type? expression?;
 
-    method_decl                 = [start]:identifier arg* type? var_decl* statement* [end]:identifier;
+    method_decl                 = [start]:identifier type? arg* var_decl* statement* [end]:identifier;
 
     arg                         = identifier type;
 

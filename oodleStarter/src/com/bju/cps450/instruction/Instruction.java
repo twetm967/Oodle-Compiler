@@ -27,7 +27,9 @@ public class Instruction {
             setge = new Instruction("setge"),
             setl = new Instruction("setl"),
             jne = new Instruction("jne"),
-            cdq = new Instruction("cdq");
+            cdq = new Instruction("cdq"),
+            enter = new Instruction("enter"),
+            leave = new Instruction("leave");
 
     private String name;
 

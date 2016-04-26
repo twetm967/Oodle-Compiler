@@ -190,10 +190,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
-        if(node.getType() != null)
-        {
-            node.getType().apply(this);
-        }
         {
             List<PArg> copy = new ArrayList<PArg>(node.getArg());
             Collections.reverse(copy);
@@ -201,6 +197,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             {
                 e.apply(this);
             }
+        }
+        if(node.getType() != null)
+        {
+            node.getType().apply(this);
         }
         if(node.getStart() != null)
         {

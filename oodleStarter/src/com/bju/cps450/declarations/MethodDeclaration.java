@@ -60,6 +60,42 @@ public class MethodDeclaration extends AbstractDeclaration {
         this.owner = owner;
     }
 
+    public boolean isArgument(String name){
+        for(int i = 0; i < getArguments().size(); ++i) {
+            if(getArguments().get(i).getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isVariable(String name){
+        for(int i = 0; i < getVariables().size(); ++i) {
+            if(getVariables().get(i).getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int argIndex(String name){
+        for(int i = 0; i < getArguments().size(); ++i) {
+            if(getArguments().get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int varIndex(String name){
+        for(int i = 0; i < getVariables().size(); ++i) {
+            if(getVariables().get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public AbstractVariableDeclaration lookupVariable(String name) {
         for(int i = 0; i < getVariables().size(); ++i) {
             if(getVariables().get(i).getName().equals(name)) {

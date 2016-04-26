@@ -1586,8 +1586,8 @@ public class Parser
         {
             // Block
         TIdentifier tidentifierNode2;
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        @SuppressWarnings("unused") Object nullNode4 = null;
+        @SuppressWarnings("unused") Object nullNode3 = null;
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
         LinkedList<Object> listNode5 = new LinkedList<Object>();
         LinkedList<Object> listNode7 = new LinkedList<Object>();
         TIdentifier tidentifierNode8;
@@ -1609,7 +1609,7 @@ public class Parser
         }
         tidentifierNode8 = (TIdentifier)nodeArrayList10.get(0);
 
-        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, listNode3, null, listNode5, listNode7, tidentifierNode8);
+        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, null, listNode4, listNode5, listNode7, tidentifierNode8);
         }
 	nodeList.add(pmethoddeclNode1);
         return nodeList;
@@ -1638,19 +1638,19 @@ public class Parser
         {
             // Block
         TIdentifier tidentifierNode2;
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
-        @SuppressWarnings("unused") Object nullNode5 = null;
+        @SuppressWarnings("unused") Object nullNode3 = null;
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
         LinkedList<Object> listNode6 = new LinkedList<Object>();
         LinkedList<Object> listNode8 = new LinkedList<Object>();
         TIdentifier tidentifierNode9;
         tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
         {
             // Block
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        listNode3 = (LinkedList)nodeArrayList3.get(0);
-	if(listNode3 != null)
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        listNode4 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode4 != null)
 	{
-	  listNode4.addAll(listNode3);
+	  listNode5.addAll(listNode4);
 	}
         }
         {
@@ -1667,7 +1667,7 @@ public class Parser
         }
         tidentifierNode9 = (TIdentifier)nodeArrayList11.get(0);
 
-        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, listNode4, null, listNode6, listNode8, tidentifierNode9);
+        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, null, listNode5, listNode6, listNode8, tidentifierNode9);
         }
 	nodeList.add(pmethoddeclNode1);
         return nodeList;
@@ -1696,16 +1696,16 @@ public class Parser
         {
             // Block
         TIdentifier tidentifierNode2;
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        PType ptypeNode4;
+        PType ptypeNode3;
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
         LinkedList<Object> listNode5 = new LinkedList<Object>();
         LinkedList<Object> listNode7 = new LinkedList<Object>();
         TIdentifier tidentifierNode8;
         tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        ptypeNode3 = (PType)nodeArrayList4.get(0);
         {
             // Block
         }
-        ptypeNode4 = (PType)nodeArrayList4.get(0);
         {
             // Block
         }
@@ -1720,7 +1720,7 @@ public class Parser
         }
         tidentifierNode8 = (TIdentifier)nodeArrayList11.get(0);
 
-        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, listNode3, ptypeNode4, listNode5, listNode7, tidentifierNode8);
+        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, ptypeNode3, listNode4, listNode5, listNode7, tidentifierNode8);
         }
 	nodeList.add(pmethoddeclNode1);
         return nodeList;
@@ -1750,22 +1750,22 @@ public class Parser
         {
             // Block
         TIdentifier tidentifierNode2;
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
-        PType ptypeNode5;
+        PType ptypeNode3;
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
         LinkedList<Object> listNode6 = new LinkedList<Object>();
         LinkedList<Object> listNode8 = new LinkedList<Object>();
         TIdentifier tidentifierNode9;
         tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        ptypeNode3 = (PType)nodeArrayList5.get(0);
         {
             // Block
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        listNode3 = (LinkedList)nodeArrayList3.get(0);
-	if(listNode3 != null)
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        listNode4 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode4 != null)
 	{
-	  listNode4.addAll(listNode3);
+	  listNode5.addAll(listNode4);
 	}
         }
-        ptypeNode5 = (PType)nodeArrayList5.get(0);
         {
             // Block
         }
@@ -1780,7 +1780,7 @@ public class Parser
         }
         tidentifierNode9 = (TIdentifier)nodeArrayList12.get(0);
 
-        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, listNode4, ptypeNode5, listNode6, listNode8, tidentifierNode9);
+        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, ptypeNode3, listNode5, listNode6, listNode8, tidentifierNode9);
         }
 	nodeList.add(pmethoddeclNode1);
         return nodeList;
@@ -1809,8 +1809,8 @@ public class Parser
         {
             // Block
         TIdentifier tidentifierNode2;
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        @SuppressWarnings("unused") Object nullNode4 = null;
+        @SuppressWarnings("unused") Object nullNode3 = null;
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
         LinkedList<Object> listNode6 = new LinkedList<Object>();
         LinkedList<Object> listNode8 = new LinkedList<Object>();
         TIdentifier tidentifierNode9;
@@ -1838,7 +1838,7 @@ public class Parser
         }
         tidentifierNode9 = (TIdentifier)nodeArrayList11.get(0);
 
-        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, listNode3, null, listNode6, listNode8, tidentifierNode9);
+        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, null, listNode4, listNode6, listNode8, tidentifierNode9);
         }
 	nodeList.add(pmethoddeclNode1);
         return nodeList;
@@ -1868,19 +1868,19 @@ public class Parser
         {
             // Block
         TIdentifier tidentifierNode2;
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
-        @SuppressWarnings("unused") Object nullNode5 = null;
+        @SuppressWarnings("unused") Object nullNode3 = null;
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
         LinkedList<Object> listNode7 = new LinkedList<Object>();
         LinkedList<Object> listNode9 = new LinkedList<Object>();
         TIdentifier tidentifierNode10;
         tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
         {
             // Block
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        listNode3 = (LinkedList)nodeArrayList3.get(0);
-	if(listNode3 != null)
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        listNode4 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode4 != null)
 	{
-	  listNode4.addAll(listNode3);
+	  listNode5.addAll(listNode4);
 	}
         }
         {
@@ -1903,7 +1903,7 @@ public class Parser
         }
         tidentifierNode10 = (TIdentifier)nodeArrayList12.get(0);
 
-        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, listNode4, null, listNode7, listNode9, tidentifierNode10);
+        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, null, listNode5, listNode7, listNode9, tidentifierNode10);
         }
 	nodeList.add(pmethoddeclNode1);
         return nodeList;
@@ -1933,16 +1933,16 @@ public class Parser
         {
             // Block
         TIdentifier tidentifierNode2;
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        PType ptypeNode4;
+        PType ptypeNode3;
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
         LinkedList<Object> listNode6 = new LinkedList<Object>();
         LinkedList<Object> listNode8 = new LinkedList<Object>();
         TIdentifier tidentifierNode9;
         tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        ptypeNode3 = (PType)nodeArrayList4.get(0);
         {
             // Block
         }
-        ptypeNode4 = (PType)nodeArrayList4.get(0);
         {
             // Block
         LinkedList<Object> listNode5 = new LinkedList<Object>();
@@ -1963,7 +1963,7 @@ public class Parser
         }
         tidentifierNode9 = (TIdentifier)nodeArrayList12.get(0);
 
-        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, listNode3, ptypeNode4, listNode6, listNode8, tidentifierNode9);
+        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, ptypeNode3, listNode4, listNode6, listNode8, tidentifierNode9);
         }
 	nodeList.add(pmethoddeclNode1);
         return nodeList;
@@ -1994,22 +1994,22 @@ public class Parser
         {
             // Block
         TIdentifier tidentifierNode2;
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
-        PType ptypeNode5;
+        PType ptypeNode3;
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
         LinkedList<Object> listNode7 = new LinkedList<Object>();
         LinkedList<Object> listNode9 = new LinkedList<Object>();
         TIdentifier tidentifierNode10;
         tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        ptypeNode3 = (PType)nodeArrayList5.get(0);
         {
             // Block
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        listNode3 = (LinkedList)nodeArrayList3.get(0);
-	if(listNode3 != null)
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        listNode4 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode4 != null)
 	{
-	  listNode4.addAll(listNode3);
+	  listNode5.addAll(listNode4);
 	}
         }
-        ptypeNode5 = (PType)nodeArrayList5.get(0);
         {
             // Block
         LinkedList<Object> listNode6 = new LinkedList<Object>();
@@ -2030,7 +2030,7 @@ public class Parser
         }
         tidentifierNode10 = (TIdentifier)nodeArrayList13.get(0);
 
-        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, listNode4, ptypeNode5, listNode7, listNode9, tidentifierNode10);
+        pmethoddeclNode1 = new AMethodDecl(tidentifierNode2, ptypeNode3, listNode5, listNode7, listNode9, tidentifierNode10);
         }
 	nodeList.add(pmethoddeclNode1);
         return nodeList;

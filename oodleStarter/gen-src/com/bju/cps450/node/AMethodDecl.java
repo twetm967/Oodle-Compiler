@@ -9,8 +9,8 @@ import com.bju.cps450.analysis.*;
 public final class AMethodDecl extends PMethodDecl
 {
     private TIdentifier _start_;
-    private final LinkedList<PArg> _arg_ = new LinkedList<PArg>();
     private PType _type_;
+    private final LinkedList<PArg> _arg_ = new LinkedList<PArg>();
     private final LinkedList<PVarDecl> _varDecl_ = new LinkedList<PVarDecl>();
     private final LinkedList<PStatement> _statement_ = new LinkedList<PStatement>();
     private TIdentifier _end_;
@@ -22,8 +22,8 @@ public final class AMethodDecl extends PMethodDecl
 
     public AMethodDecl(
         @SuppressWarnings("hiding") TIdentifier _start_,
-        @SuppressWarnings("hiding") List<?> _arg_,
         @SuppressWarnings("hiding") PType _type_,
+        @SuppressWarnings("hiding") List<?> _arg_,
         @SuppressWarnings("hiding") List<?> _varDecl_,
         @SuppressWarnings("hiding") List<?> _statement_,
         @SuppressWarnings("hiding") TIdentifier _end_)
@@ -31,9 +31,9 @@ public final class AMethodDecl extends PMethodDecl
         // Constructor
         setStart(_start_);
 
-        setArg(_arg_);
-
         setType(_type_);
+
+        setArg(_arg_);
 
         setVarDecl(_varDecl_);
 
@@ -48,8 +48,8 @@ public final class AMethodDecl extends PMethodDecl
     {
         return new AMethodDecl(
             cloneNode(this._start_),
-            cloneList(this._arg_),
             cloneNode(this._type_),
+            cloneList(this._arg_),
             cloneList(this._varDecl_),
             cloneList(this._statement_),
             cloneNode(this._end_));
@@ -86,6 +86,31 @@ public final class AMethodDecl extends PMethodDecl
         this._start_ = node;
     }
 
+    public PType getType()
+    {
+        return this._type_;
+    }
+
+    public void setType(PType node)
+    {
+        if(this._type_ != null)
+        {
+            this._type_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._type_ = node;
+    }
+
     public LinkedList<PArg> getArg()
     {
         return this._arg_;
@@ -110,31 +135,6 @@ public final class AMethodDecl extends PMethodDecl
             e.parent(this);
             this._arg_.add(e);
         }
-    }
-
-    public PType getType()
-    {
-        return this._type_;
-    }
-
-    public void setType(PType node)
-    {
-        if(this._type_ != null)
-        {
-            this._type_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._type_ = node;
     }
 
     public LinkedList<PVarDecl> getVarDecl()
@@ -219,8 +219,8 @@ public final class AMethodDecl extends PMethodDecl
     {
         return ""
             + toString(this._start_)
-            + toString(this._arg_)
             + toString(this._type_)
+            + toString(this._arg_)
             + toString(this._varDecl_)
             + toString(this._statement_)
             + toString(this._end_);
@@ -236,14 +236,14 @@ public final class AMethodDecl extends PMethodDecl
             return;
         }
 
-        if(this._arg_.remove(child))
-        {
-            return;
-        }
-
         if(this._type_ == child)
         {
             this._type_ = null;
+            return;
+        }
+
+        if(this._arg_.remove(child))
+        {
             return;
         }
 
@@ -276,6 +276,12 @@ public final class AMethodDecl extends PMethodDecl
             return;
         }
 
+        if(this._type_ == oldChild)
+        {
+            setType((PType) newChild);
+            return;
+        }
+
         for(ListIterator<PArg> i = this._arg_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
@@ -292,12 +298,6 @@ public final class AMethodDecl extends PMethodDecl
                 oldChild.parent(null);
                 return;
             }
-        }
-
-        if(this._type_ == oldChild)
-        {
-            setType((PType) newChild);
-            return;
         }
 
         for(ListIterator<PVarDecl> i = this._varDecl_.listIterator(); i.hasNext();)
